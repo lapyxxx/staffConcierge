@@ -1,0 +1,300 @@
+@import "@fontsource/manrope/400.css";
+@import "@fontsource/manrope/500.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
+@import "@fontsource/manrope/800.css";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+@import "@fontsource/dm-sans/700.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Cream / ivory background */
+    --background: 30 33% 94%;
+    --foreground: 0 0% 10%;
+
+    /* Cards */
+    --card: 30 25% 97%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Primary — warm beige-gold #C9A96E */
+    --primary: 38 46% 61%;
+    --primary-foreground: 0 0% 10%;
+
+    /* Secondary — warm gray */
+    --secondary: 30 15% 90%;
+    --secondary-foreground: 0 0% 10%;
+
+    /* Muted */
+    --muted: 30 12% 88%;
+    --muted-foreground: 25 5% 46%;
+
+    /* Accent */
+    --accent: 30 20% 92%;
+    --accent-foreground: 0 0% 10%;
+
+    /* Dark section */
+    --dark: 0 0% 10%;
+    --dark-foreground: 30 33% 94%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 38 46% 61%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --olive: 38 46% 61%;
+    --olive-light: 38 30% 90%;
+    --olive-dark: 38 40% 45%;
+    --cream: 30 33% 94%;
+    --cream-dark: 30 20% 90%;
+    --charcoal: 0 0% 10%;
+    
+    /* Shadows — subtle */
+    --shadow-sm: 0 1px 4px hsl(0 0% 10% / 0.03);
+    --shadow-md: 0 4px 20px hsl(0 0% 10% / 0.04);
+    --shadow-lg: 0 12px 40px hsl(0 0% 10% / 0.06);
+    --shadow-xl: 0 20px 60px hsl(0 0% 10% / 0.08);
+  }
+
+  .dark {
+    --background: 0 0% 6%;
+    --foreground: 30 33% 94%;
+    --card: 0 0% 10%;
+    --card-foreground: 30 33% 94%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 30 33% 94%;
+    --primary: 38 46% 61%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 30 33% 94%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 30 10% 60%;
+    --accent: 38 20% 20%;
+    --accent-foreground: 38 30% 80%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 38 46% 61%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-foreground leading-[1.1];
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Display headings — uppercase Playfair Display */
+  .heading-display {
+    @apply text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.08em;
+    line-height: 0.95;
+  }
+
+  .heading-xl {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold uppercase;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.08em;
+    line-height: 1.05;
+  }
+
+  .heading-lg {
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold uppercase;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.08em;
+  }
+
+  .heading-md {
+    @apply text-xl sm:text-2xl font-bold uppercase;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.08em;
+  }
+
+  .text-lead {
+    @apply text-base md:text-lg text-muted-foreground leading-relaxed;
+  }
+}
+
+@layer components {
+  .container-wide {
+    @apply max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16;
+  }
+
+  .section-padding {
+    @apply py-10 md:py-14 lg:py-16;
+  }
+
+  .section-padding-sm {
+    @apply py-8 md:py-10 lg:py-12;
+  }
+
+  /* Clean card — no shadows by default */
+  .card-elevated {
+    @apply bg-card rounded-2xl border border-border transition-all duration-500 overflow-hidden;
+  }
+
+  .card-elevated:hover {
+    @apply border-primary/30;
+  }
+
+  /* Dark card variant */
+  .card-dark {
+    @apply bg-charcoal text-cream rounded-2xl overflow-hidden;
+  }
+
+  /* CTA Button — beige-gold accent */
+  .btn-cta {
+    @apply inline-flex items-center gap-3 px-7 py-4 bg-primary text-primary-foreground 
+           font-semibold rounded-full transition-all duration-300 uppercase tracking-wider text-sm
+           hover:shadow-md;
+  }
+
+  .btn-cta-icon {
+    @apply w-9 h-9 rounded-full bg-foreground/10 flex items-center justify-center
+           transition-all duration-300;
+  }
+
+  /* Outline button */
+  .btn-outline {
+    @apply inline-flex items-center gap-3 px-7 py-4 border border-foreground/30
+           text-foreground font-semibold rounded-full transition-all duration-300
+           hover:border-foreground hover:bg-foreground hover:text-background
+           uppercase tracking-wider text-sm;
+  }
+
+  /* Link with underline animation */
+  .link-underline {
+    @apply relative inline-block;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-px bg-current scale-x-0 origin-right transition-transform duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+
+  /* Section label — small uppercase */
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-6;
+  }
+
+  /* Stats number styling */
+  .stat-number {
+    @apply text-4xl md:text-5xl font-extrabold tracking-tight;
+  }
+
+  /* Premium input styling */
+  .input-modern {
+    @apply w-full px-5 py-4 bg-background border border-border rounded-xl
+           focus:outline-none focus:border-primary transition-colors duration-200 
+           placeholder:text-muted-foreground/60 text-foreground;
+  }
+
+  select.input-modern {
+    @apply appearance-none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235a5a5a' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .label-modern {
+    @apply block text-xs font-semibold text-foreground mb-2 uppercase tracking-widest;
+  }
+
+  /* Premium typography classes */
+  .heading-premium {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+
+  .text-premium {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #5a5a5a;
+  }
+
+  .text-premium-secondary {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #9a9a9a;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-slide-up {
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slide-up-delay-1 {
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up-delay-2 {
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
