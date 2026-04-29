@@ -90,6 +90,7 @@ const Problems = () => {
               loop
               muted
               playsInline
+              preload="metadata"
               className="w-full h-full object-cover"
             />
           </motion.div>
@@ -114,6 +115,7 @@ const Problems = () => {
                 <img
                   src={heroImage}
                   alt=""
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </div>

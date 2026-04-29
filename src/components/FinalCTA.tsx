@@ -8,13 +8,17 @@ const FinalCTA = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const scrollToForm = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("intent", "consultation");
+    window.history.pushState({}, "", url);
+    window.dispatchEvent(new CustomEvent("application-intent-change"));
     document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section className="relative overflow-hidden" ref={ref}>
       <div className="absolute inset-0">
-        <video src={ctaBgVideo} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+        <video src={ctaBgVideo} autoPlay loop muted playsInline preload="metadata" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-charcoal/65" />
       </div>
 
@@ -26,10 +30,11 @@ const FinalCTA = () => {
             transition={{ duration: 0.7 }}
           >
             <h2 className="heading-xl text-cream mb-6">
-              От заявки до начала обучения — 24 часа
+              Начните путь к профессии, где важны доверие, статус и достойная оплата
             </h2>
             <p className="text-cream/60 text-base mb-10">
-              Наши менеджеры готовы ответить на все вопросы и помочь выбрать подходящий формат.
+              Вы можете пройти обучение самостоятельно, выбрать сопровождение или получить индивидуальную
+              карьерную траекторию. Главное — начать с профессиональной системы, а не с разрозненных советов.
             </p>
           </motion.div>
 

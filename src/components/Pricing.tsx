@@ -1,107 +1,137 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Check, ArrowUpRight, UtensilsCrossed, Briefcase, Shirt, Sparkles, Calendar, BookOpen } from "lucide-react";
+import {
+  ArrowUpRight,
+  BookOpen,
+  Briefcase,
+  Calendar,
+  Check,
+  Shirt,
+  Sparkles,
+  UtensilsCrossed,
+} from "lucide-react";
+
+const setApplicationIntent = (intent: string) => {
+  const url = new URL(window.location.href);
+  url.searchParams.set("intent", intent);
+  window.history.pushState({}, "", url);
+  window.dispatchEvent(new CustomEvent("application-intent-change"));
+  document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" });
+};
+
+const plans = [
+  {
+    key: "basic",
+    name: "БАЗОВЫЙ",
+    subtitle: "Фундамент профессии",
+    price: "49 900",
+    forWhom: "Для самостоятельного освоения профессии и системной базы для старта.",
+    value: "Полный доступ к программе, методическим материалам и заданиям.",
+    features: [
+      "Основные уроки курса",
+      "Чек-листы, памятки, инструкции и шаблоны",
+      "Практические задания для самостоятельного закрепления",
+      "Тестирование по ключевым темам",
+      "Сертификат после прохождения программы",
+    ],
+    cta: "Начать самостоятельно",
+    highlighted: false,
+  },
+  {
+    key: "pro",
+    name: "PRO",
+    subtitle: "Практика + сопровождение",
+    price: "79 900",
+    forWhom: "Для тех, кому нужна поддержка, обратная связь и подготовка к выходу на рынок.",
+    value: "Самый сбалансированный формат: знания, кураторство, практика и карьерная подготовка.",
+    features: [
+      "Все из тарифа БАЗОВЫЙ",
+      "Кураторское сопровождение и ответы на вопросы",
+      "Проверка домашних заданий и обратная связь",
+      "Закрытый чат группы",
+      "Разборы реальных кейсов",
+      "Карьерный блок: резюме, анкета, самопрезентация, собеседование",
+    ],
+    cta: "Выбрать PRO",
+    highlighted: true,
+  },
+  {
+    key: "vip",
+    name: "VIP",
+    subtitle: "Личная карьерная траектория",
+    price: "149 000",
+    forWhom: "Для индивидуального сопровождения, премиальной упаковки и подготовки к сильному сегменту.",
+    value: "Личное внимание экспертов, персональная стратегия и подготовка к собеседованиям.",
+    features: [
+      "Все из тарифа PRO",
+      "Индивидуальная диагностика на старте",
+      "4 личные сессии с экспертом",
+      "Персональная проверка ключевых заданий",
+      "Личная упаковка анкеты и резюме",
+      "Стратегия дохода и приоритетная обратная связь",
+    ],
+    cta: "Подать заявку на VIP",
+    highlighted: false,
+  },
+];
+
+const comparisonRows = [
+  ["Формат", "Самостоятельное обучение", "Обучение с поддержкой", "Индивидуальное сопровождение"],
+  ["Практические задания", "Самостоятельно", "С проверкой", "С персональной обратной связью"],
+  ["Чат и поддержка", "Минимально", "Да", "Приоритетно"],
+  ["Карьерный блок", "Базовые материалы", "Резюме, анкета, собеседование", "Личная упаковка и стратегия дохода"],
+  ["Личные сессии", "Нет", "Нет", "4 личные сессии"],
+  ["Рекомендация школы", "Нет", "При выполнении условий", "Приоритетно при выполнении условий"],
+];
+
+const modules = [
+  { icon: UtensilsCrossed, label: "Сервировка", price: "от 4 900 ₽" },
+  { icon: Briefcase, label: "Этикет", price: "от 4 900 ₽" },
+  { icon: Shirt, label: "Стиль", price: "от 4 900 ₽" },
+  { icon: Sparkles, label: "Хозяйство", price: "от 4 900 ₽" },
+  { icon: Calendar, label: "Планирование", price: "от 4 900 ₽" },
+  { icon: BookOpen, label: "Навыки", price: "от 4 900 ₽" },
+];
 
 const Pricing = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const scrollToForm = (planName?: string, specialization?: string) => {
-    const url = new URL(window.location.href);
-    
-    if (specialization) {
-      url.searchParams.set("specialization", specialization);
-    } else if (planName) {
-      url.searchParams.set("plan", planName);
-    }
-    
-    window.history.pushState({}, "", url);
-    document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const plans = [
-    {
-      name: "BASE",
-      subtitle: "CORE, стандарт - базовость",
-      price: "24 400",
-      installment: "от 6 100 ₽ / Мес",
-      installmentNote: "«Долями» — 4 платежа по 6 100 ₽",
-      features: [
-        "Доступ к Core‑модулям: безопасность, возрастные блоки, базовые коммуникации, основы договора и этики",
-        "Чек‑листы, шаблоны, тесты",
-        "Сертификат о прохождении",
-      ],
-      highlighted: false,
-      upgrade: null,
-    },
-    {
-      name: "PRO",
-      subtitle: "FULL: EXPERT",
-      price: "59 900",
-      installment: "от 9 900 ₽ / Мес",
-      installmentNote: "Рассрочка до 6 месяцев",
-      features: [
-        "Всё из тарифа Base + полный блок экспертов",
-        "Быстрые проверки выполненных заданий и корректировки",
-        "Групповые Q&A и разборы кейсов (4 встречи)",
-        "Финальная аттестация «с человеком» — мини‑экзамен",
-        "Сертификат «PRO (аттестовано)»",
-      ],
-      highlighted: true,
-      upgrade: "Переход из Base с доплатой разницы",
-    },
-    {
-      name: "CAREER",
-      subtitle: "Индивидуальная аттестация + упаковка + вакансии",
-      price: "129 900",
-      installment: "от 5 412 ₽/Мес",
-      installmentNote: "Рассрочка до 24 месяцев",
-      features: [
-        "Всё из тарифа Pro",
-        "Индивидуальная аттестация (60 мин) + персональная карта развития",
-        "Упаковка профиля: резюме, анкета, легенда, рекомендательные формулировки",
-        "Репетиция собеседования (1–2 сессии)",
-        "Приоритетное рассмотрение в «премиум‑лист» агентства",
-      ],
-      highlighted: false,
-      upgrade: "Переход из Pro с доплатой разницы",
-    },
-  ];
-
   return (
-    <section id="pricing" className="py-32 md:py-40 bg-secondary" ref={ref}>
+    <section id="pricing" className="py-24 md:py-32 bg-secondary" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-6">Тарифы</p>
-          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-[0.15em] text-foreground mb-4">
-            Выберите формат
+          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-[0.08em] text-foreground mb-4">
+            Выберите формат обучения
           </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto text-sm leading-relaxed">
-            Три варианта участия для разных целей и возможностей. Переход между тарифами возможен с доплатой разницы.
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+            Разница между тарифами не в количестве уроков, а в уровне сопровождения,
+            глубине обратной связи и скорости уверенного выхода в практику.
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {plans.map((plan, index) => (
-            <motion.div
-              key={index}
+            <motion.article
+              key={plan.key}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`rounded-2xl p-8 flex flex-col transition-all duration-300 ${
+              className={`rounded-2xl p-7 md:p-8 flex flex-col transition-all duration-300 ${
                 plan.highlighted
                   ? "bg-foreground text-background ring-1 ring-foreground"
                   : "bg-background border border-border"
               }`}
             >
               {plan.highlighted && (
-                <span className="inline-block text-[10px] font-semibold uppercase tracking-[0.22em] text-background bg-primary px-3 py-1 rounded-full mb-4">
-                  Рекомендуем
+                <span className="inline-block text-[10px] font-semibold uppercase tracking-[0.22em] text-background bg-primary px-3 py-1 rounded-full mb-4 self-start">
+                  Рекомендуемый тариф
                 </span>
               )}
 
@@ -110,40 +140,40 @@ const Pricing = () => {
               }`}>
                 {plan.name}
               </h3>
-              <p className={`text-xs mb-6 ${plan.highlighted ? "text-background/50" : "text-muted-foreground"}`}>
+              <p className={`text-xs mb-6 ${plan.highlighted ? "text-background/55" : "text-muted-foreground"}`}>
                 {plan.subtitle}
               </p>
 
-              <div className="mb-2">
-                <div className="flex items-baseline gap-1">
-                  <span className={`text-4xl font-extrabold tracking-tight ${
-                    plan.highlighted ? "text-background" : "text-foreground"
-                  }`}>
-                    {plan.price}
-                  </span>
-                  <span className={plan.highlighted ? "text-background/50" : "text-muted-foreground"}>₽</span>
-                </div>
+              <div className="mb-6">
+                <span className={`text-4xl font-extrabold tracking-tight ${
+                  plan.highlighted ? "text-background" : "text-foreground"
+                }`}>
+                  {plan.price}
+                </span>
+                <span className={plan.highlighted ? "text-background/50" : "text-muted-foreground"}> ₽</span>
               </div>
 
-              <div className={`mb-8 pb-6 border-b ${plan.highlighted ? "border-background/15" : "border-border"}`}>
-                <p className={`text-sm font-semibold ${plan.highlighted ? "text-primary" : "text-primary"}`}>
-                  {plan.installment}
+              <div className={`space-y-3 mb-7 pb-6 border-b ${plan.highlighted ? "border-background/15" : "border-border"}`}>
+                <p className={`text-sm leading-relaxed ${plan.highlighted ? "text-background/75" : "text-muted-foreground"}`}>
+                  <span className={plan.highlighted ? "text-background font-semibold" : "text-foreground font-semibold"}>Для кого: </span>
+                  {plan.forWhom}
                 </p>
-                <p className={`text-xs mt-0.5 ${plan.highlighted ? "text-background/40" : "text-muted-foreground"}`}>
-                  {plan.installmentNote}
+                <p className={`text-sm leading-relaxed ${plan.highlighted ? "text-background/75" : "text-muted-foreground"}`}>
+                  <span className={plan.highlighted ? "text-background font-semibold" : "text-foreground font-semibold"}>Ценность: </span>
+                  {plan.value}
                 </p>
               </div>
 
               <ul className="space-y-3 mb-8 flex-1">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3">
                     <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
                       plan.highlighted ? "bg-primary" : "bg-primary/15"
                     }`}>
                       <Check size={10} className={plan.highlighted ? "text-foreground" : "text-primary"} />
                     </div>
                     <span className={`text-sm leading-relaxed ${
-                      plan.highlighted ? "text-background/70" : "text-muted-foreground"
+                      plan.highlighted ? "text-background/72" : "text-muted-foreground"
                     }`}>
                       {feature}
                     </span>
@@ -151,97 +181,121 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              {plan.upgrade && (
-                <p className={`text-xs mb-4 text-center ${
-                  plan.highlighted ? "text-background/40" : "text-muted-foreground"
-                }`}>
-                  ↑ {plan.upgrade}
-                </p>
-              )}
-
               <button
-                onClick={() => scrollToForm(plan.name)}
+                onClick={() => setApplicationIntent(plan.key)}
                 className={`w-full py-3.5 rounded-full font-semibold text-sm uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 ${
                   plan.highlighted
                     ? "bg-primary text-foreground hover:opacity-90"
                     : "bg-foreground text-background hover:opacity-90"
                 }`}
               >
-                <span>Выбрать</span>
+                <span>{plan.cta}</span>
                 <ArrowUpRight size={14} />
               </button>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 
-        {/* Divider */}
-        <div className="mt-24 md:mt-32 mb-16 md:mb-20">
-          <div className="h-px bg-border/60 max-w-2xl mx-auto" />
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-16 grid lg:grid-cols-3 gap-5"
+        >
+          {[
+            ["БАЗОВЫЙ", "если хотите получить систему знаний и готовы проходить обучение самостоятельно."],
+            ["PRO", "если важны поддержка, обратная связь, разбор ошибок и подготовка к работе."],
+            ["VIP", "если нужен индивидуальный подход, карьерная упаковка и подготовка к премиальному сегменту."],
+          ].map(([title, text]) => (
+            <div key={title} className="bg-background border border-border rounded-2xl p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">Когда выбирать</p>
+              <h3 className="text-lg font-bold mb-2">{title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+            </div>
+          ))}
+        </motion.div>
 
-        {/* Individual modules section */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-16 overflow-hidden rounded-2xl border border-border bg-background"
+        >
+          <div className="p-6 md:p-8 border-b border-border">
+            <p className="section-label mb-3">Сравнение</p>
+            <h3 className="heading-md">Что входит в тарифы</h3>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[760px] text-sm">
+              <thead>
+                <tr className="bg-card text-left">
+                  <th className="p-4 font-semibold">Критерий</th>
+                  <th className="p-4 font-semibold">БАЗОВЫЙ</th>
+                  <th className="p-4 font-semibold">PRO</th>
+                  <th className="p-4 font-semibold">VIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonRows.map((row) => (
+                  <tr key={row[0]} className="border-t border-border">
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`} className={`p-4 align-top ${index === 0 ? "font-semibold text-foreground" : "text-muted-foreground"}`}>
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 md:mt-20"
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="mt-16 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
         >
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left side - Text content */}
-            <div className="order-1 lg:order-1">
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold uppercase tracking-[0.08em] text-foreground mb-6">
-                Также доступны индивидуальные модули
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-8 text-sm md:text-base">
-                Вы можете приобрести отдельные курсы по конкретным навыкам. Выбирайте только необходимые направления и формируйте персональную программу обучения.
-              </p>
-              <button
-                onClick={() => scrollToForm(undefined, "Индивидуальный модуль.")}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-semibold rounded-full text-sm uppercase tracking-wider hover:opacity-90 transition-all duration-200"
-              >
-                <span>Подобрать модуль</span>
-                <ArrowUpRight size={14} />
-              </button>
-            </div>
+          <div>
+            <p className="section-label">Отдельные модули</p>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold uppercase tracking-[0.08em] text-foreground mb-6">
+              Можно пройти точечный модуль
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-5 text-sm md:text-base">
+              Отдельный модуль подходит, если нужно закрыть конкретный навык. Полный курс нужен,
+              когда важна система: знания, практика, обратная связь и карьерная упаковка.
+            </p>
+            <p className="text-sm text-foreground mb-8">
+              Если после модуля вы решите перейти на полный тариф, менеджер подскажет доступные варианты перехода.
+            </p>
+            <button
+              onClick={() => setApplicationIntent("module")}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-semibold rounded-full text-sm uppercase tracking-wider hover:opacity-90 transition-all duration-200"
+            >
+              <span>Подобрать модуль</span>
+              <ArrowUpRight size={14} />
+            </button>
+          </div>
 
-            {/* Right side - Module cards grid */}
-            <div className="order-2 lg:order-2">
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-                {[
-                  { icon: UtensilsCrossed, label: "Сервировка", price: "от 4 900 ₽" },
-                  { icon: Briefcase, label: "Этикет", price: "от 4 900 ₽" },
-                  { icon: Shirt, label: "Стиль", price: "от 4 900 ₽" },
-                  { icon: Sparkles, label: "Хозяйство", price: "от 4 900 ₽" },
-                  { icon: Calendar, label: "Планирование", price: "от 4 900 ₽" },
-                  { icon: BookOpen, label: "Навыки", price: "от 4 900 ₽" },
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.5 + index * 0.05 }}
-                    className="group relative aspect-square rounded-2xl bg-background border border-border flex flex-col items-center justify-center p-6 hover:bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200 cursor-pointer"
-                    style={{ transform: "scale(1)" }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "scale(1.03)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "scale(1)";
-                    }}
-                  >
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors duration-200">
-                      <item.icon size={24} className="text-primary/70 group-hover:text-primary transition-colors duration-200" strokeWidth={1.5} />
-                    </div>
-                    <span className="text-xs md:text-sm font-medium text-foreground text-center mb-2 group-hover:text-foreground transition-colors duration-200">
-                      {item.label}
-                    </span>
-                    <span className="text-[10px] md:text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      {item.price}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+            {modules.map((item) => (
+              <button
+                key={item.label}
+                type="button"
+                onClick={() => setApplicationIntent(`module-${item.label}`)}
+                className="group relative aspect-square rounded-2xl bg-background border border-border flex flex-col items-center justify-center p-5 hover:bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200"
+              >
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors duration-200">
+                  <item.icon size={24} className="text-primary/70 group-hover:text-primary transition-colors duration-200" strokeWidth={1.5} />
+                </div>
+                <span className="text-xs md:text-sm font-medium text-foreground text-center mb-2">
+                  {item.label}
+                </span>
+                <span className="text-[10px] md:text-xs text-muted-foreground">
+                  {item.price}
+                </span>
+              </button>
+            ))}
           </div>
         </motion.div>
       </div>

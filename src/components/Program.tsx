@@ -153,7 +153,10 @@ const Program = () => {
           >
             <p className="section-label">Программа курса</p>
             <h2 className="heading-lg mb-6">
-              5 модулей для полной трансформации
+              <span className="inline-block -translate-y-[0.03em] align-baseline font-sans font-extrabold tracking-normal [font-variant-numeric:lining-nums]">
+                5
+              </span>{" "}
+              модулей для полной трансформации
             </h2>
             <p className="text-muted-foreground mb-8 text-sm">
               Каждый модуль включает теорию, практику и индивидуальную обратную связь.

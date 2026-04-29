@@ -76,6 +76,7 @@ const Teachers = () => {
                 <img
                   src={teacher.image}
                   alt={teacher.name}
+                  loading="lazy"
                   className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
                 />
               </div>

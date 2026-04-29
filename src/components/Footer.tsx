@@ -1,12 +1,10 @@
-import { ArrowUpRight } from "lucide-react";
 import logo from "@/assets/logo-black.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer className="py-12 border-t border-border bg-background">
+    <footer className="pt-12 pb-36 lg:py-12 border-t border-border bg-background">
       <div className="container-wide">
         <div className="grid md:grid-cols-3 gap-8 items-center">
           <div>
@@ -22,17 +20,15 @@ const Footer = () => {
               { label: "Программа", href: "#program" },
               { label: "Тарифы", href: "#pricing" },
               { label: "FAQ", href: "#faq" },
+              { label: "Материалы", href: "/articles/vip-family" },
             ].map((link) => (
-              <a key={link.href} href={link.href} className="text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors">
+              <a key={link.href} href={link.href} className="text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
                 {link.label}
               </a>
             ))}
           </div>
 
           <div className="flex flex-col md:items-end gap-3">
-            <button onClick={scrollToTop} className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors" aria-label="Back to top">
-              <ArrowUpRight size={14} className="rotate-[-45deg]" />
-            </button>
             <p className="text-xs text-muted-foreground">© {currentYear} Staff Concierge Academy</p>
           </div>
         </div>
@@ -47,6 +43,9 @@ const Footer = () => {
             </a>
             <a href="/personal-data" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
               Политика обработки персональных данных
+            </a>
+            <a href="/articles/governess-salary" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+              Доход гувернантки
             </a>
           </div>
         </div>

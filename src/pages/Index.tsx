@@ -6,6 +6,7 @@ import Solution from "@/components/Solution";
 import Program from "@/components/Program";
 import Format from "@/components/Format";
 import Teachers from "@/components/Teachers";
+import TrustEvidence from "@/components/TrustEvidence";
 import Advantages from "@/components/Advantages";
 import Certification from "@/components/Certification";
 import Pricing from "@/components/Pricing";
@@ -14,6 +15,9 @@ import FinalCTA from "@/components/FinalCTA";
 import ApplicationForm from "@/components/ApplicationForm";
 import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
+import FloatingActions from "@/components/FloatingActions";
+import CookieNotice from "@/components/CookieNotice";
+import Analytics from "@/components/Analytics";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +48,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {isLoading && <Loader />}
+      <Analytics />
       <Header />
       <main>
         <Hero />
@@ -52,6 +57,7 @@ const Index = () => {
         <Program />
         <Format />
         <Teachers />
+        <TrustEvidence />
         <Advantages />
         <Certification />
         <Pricing />
@@ -60,6 +66,8 @@ const Index = () => {
         <ApplicationForm />
       </main>
       <Footer />
+      <FloatingActions />
+      <CookieNotice />
     </div>
   );
 };

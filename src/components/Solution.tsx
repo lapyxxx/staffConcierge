@@ -8,6 +8,10 @@ const Solution = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const scrollToForm = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("intent", "consultation");
+    window.history.pushState({}, "", url);
+    window.dispatchEvent(new CustomEvent("application-intent-change"));
     document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -67,7 +71,7 @@ const Solution = () => {
               {[
                 "Программа, построенная на реальных запросах семей",
                 "Преподаватели-практики из индустрии",
-                "Трудоустройство лучших выпускников через наше агентство",
+                "Приоритетное рассмотрение лучших выпускников при соответствии стандартам агентства",
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -103,8 +107,8 @@ const Solution = () => {
               {[
                 { number: "5", label: "Модулей обучения" },
                 { number: "50+", label: "Часов практики" },
-                { number: "24/7", label: "Часа поддержки" },
-                { number: "100%", label: "Успешных выпускников" },
+                { number: "3", label: "Уровня сопровождения" },
+                { number: "1", label: "Связка с действующим агентством" },
               ].map((stat, index) => (
                 <motion.div
                   key={index}

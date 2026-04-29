@@ -8,6 +8,8 @@ import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import PersonalData from "./pages/PersonalData";
+import VipFamilyArticle from "./pages/VipFamilyArticle";
+import GovernessSalaryArticle from "./pages/GovernessSalaryArticle";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ const App = () => (
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/personal-data" element={<PersonalData />} />
+          <Route path="/articles/vip-family" element={<VipFamilyArticle />} />
+          <Route path="/articles/governess-salary" element={<GovernessSalaryArticle />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
