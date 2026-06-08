@@ -116,7 +116,7 @@ const Pricing = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-3 gap-6">
           {plans.map((plan, index) => (
             <motion.article
               key={plan.key}
@@ -258,8 +258,8 @@ const Pricing = () => {
         >
           <div>
             <p className="section-label">Отдельные модули</p>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold uppercase tracking-[0.08em] text-foreground mb-6">
-              Можно пройти точечный модуль
+            <h3 className="text-2xl md:text-3xl font-heading font-bold uppercase tracking-[0.08em] text-foreground mb-6">
+              Точечные модули
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-5 text-sm md:text-base">
               Отдельный модуль подходит, если нужно закрыть конкретный навык. Полный курс нужен,
@@ -277,18 +277,18 @@ const Pricing = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4">
             {modules.map((item) => (
               <button
                 key={item.label}
                 type="button"
                 onClick={() => setApplicationIntent(`module-${item.label}`)}
-                className="group relative aspect-square rounded-2xl bg-background border border-border flex flex-col items-center justify-center p-5 hover:bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200"
+                className="group relative min-h-[138px] sm:min-h-[150px] lg:min-h-[156px] rounded-2xl bg-background border border-border flex flex-col items-center justify-center p-4 hover:bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200"
               >
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors duration-200">
-                  <item.icon size={24} className="text-primary/70 group-hover:text-primary transition-colors duration-200" strokeWidth={1.5} />
+                <div className="w-12 h-12 sm:w-[52px] sm:h-[52px] md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/15 transition-colors duration-200">
+                  <item.icon size={26} className="text-primary/70 group-hover:text-primary transition-colors duration-200" strokeWidth={1.5} />
                 </div>
-                <span className="text-xs md:text-sm font-medium text-foreground text-center mb-2">
+                <span className="text-xs md:text-sm font-medium text-foreground text-center mb-1.5">
                   {item.label}
                 </span>
                 <span className="text-[10px] md:text-xs text-muted-foreground">

@@ -13,6 +13,7 @@ import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import ApplicationForm from "@/components/ApplicationForm";
+import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 import FloatingActions from "@/components/FloatingActions";
@@ -61,6 +62,7 @@ const Index = () => {
         <Advantages />
         <Certification />
         <Pricing />
+        <Reviews />
         <FAQ />
         <FinalCTA />
         <ApplicationForm />
