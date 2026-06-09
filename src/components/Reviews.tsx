@@ -1,6 +1,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Quote, Star } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const reviews = [
   {
@@ -86,6 +93,37 @@ const reviews = [
   },
 ];
 
+type Review = (typeof reviews)[number];
+
+const ReviewCard = ({ review, index, isInView }: { review: Review; index: number; isInView: boolean }) => (
+  <motion.article
+    initial={{ opacity: 0, y: 18 }}
+    animate={isInView ? { opacity: 1, y: 0 } : {}}
+    transition={{ duration: 0.45, delay: index * 0.04 }}
+    className="h-full min-h-[300px] rounded-2xl border border-border bg-card p-5 shadow-sm"
+  >
+    <div className="mb-4 flex items-start justify-between gap-3">
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+          <Quote size={17} />
+        </div>
+        <p className="text-sm font-semibold text-foreground">{review.name}</p>
+      </div>
+
+      <div className="flex items-center gap-0.5 text-primary">
+        {Array.from({ length: 5 }).map((_, starIndex) => (
+          <Star key={starIndex} size={12} fill="currentColor" />
+        ))}
+      </div>
+    </div>
+
+    <h3 className="mb-3 font-sans text-sm md:text-[15px] font-semibold leading-snug tracking-normal normal-case">
+      {review.title}
+    </h3>
+    {review.text && <p className="text-sm leading-relaxed text-muted-foreground">{review.text}</p>}
+  </motion.article>
+);
+
 const Reviews = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-120px" });
@@ -108,41 +146,33 @@ const Reviews = () => {
           </p>
         </motion.div>
 
-        <div className="-mx-6 overflow-x-auto px-6 pb-2 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="-mx-6 overflow-x-auto px-6 pb-2 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] lg:hidden [&::-webkit-scrollbar]:hidden">
           <div className="flex gap-4 md:gap-5">
             {reviews.map((review, index) => (
-              <motion.article
+              <div
                 key={review.name}
-                initial={{ opacity: 0, y: 18 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.45, delay: index * 0.04 }}
-                className="min-h-[300px] w-[78vw] max-w-[360px] shrink-0 snap-start rounded-2xl border border-border bg-card p-5 shadow-sm sm:w-[calc((100%_-_1rem)/2)] sm:max-w-none lg:w-[calc((100%_-_2.5rem)/3)]"
+                className="w-[78vw] max-w-[360px] shrink-0 snap-start sm:w-[calc((100%_-_1rem)/2)] sm:max-w-none"
               >
-                <div className="mb-4 flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      <Quote size={17} />
-                    </div>
-                    <p className="text-sm font-semibold text-foreground">{review.name}</p>
-                  </div>
-
-                  <div className="flex items-center gap-0.5 text-primary">
-                    {Array.from({ length: 5 }).map((_, starIndex) => (
-                      <Star key={starIndex} size={12} fill="currentColor" />
-                    ))}
-                  </div>
-                </div>
-
-                <h3 className="mb-3 font-sans text-sm md:text-[15px] font-semibold leading-snug tracking-normal normal-case">
-                  {review.title}
-                </h3>
-                {review.text && (
-                  <p className="text-sm leading-relaxed text-muted-foreground">{review.text}</p>
-                )}
-              </motion.article>
+                <ReviewCard review={review} index={index} isInView={isInView} />
+              </div>
             ))}
           </div>
         </div>
+
+        <Carousel
+          opts={{ align: "start" }}
+          className="hidden lg:block"
+        >
+          <CarouselContent className="-ml-5">
+            {reviews.map((review, index) => (
+              <CarouselItem key={review.name} className="basis-1/3 pl-5">
+                <ReviewCard review={review} index={index} isInView={isInView} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="-left-4 h-11 w-11 border-border bg-card text-foreground shadow-sm hover:bg-primary hover:text-primary-foreground disabled:opacity-30 xl:-left-14" />
+          <CarouselNext className="-right-4 h-11 w-11 border-border bg-card text-foreground shadow-sm hover:bg-primary hover:text-primary-foreground disabled:opacity-30 xl:-right-14" />
+        </Carousel>
       </div>
     </section>
   );
