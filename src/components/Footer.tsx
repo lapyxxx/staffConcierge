@@ -29,6 +29,24 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col md:items-end gap-3">
+            <div className="flex flex-col gap-2 md:items-end">
+              <a
+                href="https://t.me/staffconcierge"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Telegram
+              </a>
+              <a
+                href="https://staff-concierge.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Staff Concierge
+              </a>
+            </div>
             <p className="text-xs text-muted-foreground">© {currentYear} Staff Concierge Academy</p>
           </div>
         </div>

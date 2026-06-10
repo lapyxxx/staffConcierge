@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import heroVideo from "@/assets/hero-video.mp4";
+import { reachGoal } from "@/lib/analytics";
 
 const Hero = () => {
   const scrollToForm = () => {
+    reachGoal("hero_consultation_click");
     const url = new URL(window.location.href);
     url.searchParams.set("intent", "consultation");
     window.history.pushState({}, "", url);
@@ -34,7 +36,7 @@ const Hero = () => {
           transition={{ duration: 0.6 }}
           className="text-xs font-semibold uppercase tracking-[0.25em] text-cream/70 mb-6"
         >
-          Обучение от агентства Staff Concierge
+          Staff Concierge Academy - место, где ваша карьера приобретает новый уровень
         </motion.p>
 
         {/* Main heading */}
@@ -54,8 +56,9 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="text-base md:text-lg text-cream/70 max-w-lg mb-6 md:mb-12"
         >
-          Профессиональная программа для нянь и гувернанток, которые хотят
-          уверенно работать с премиальными семьями и понимать стандарты рынка.
+          Место, где педагог обретает свое признание и достойный заработок.
+          Вы переосмыслите свою профессию заново, раскроете сильные стороны
+          и расширите горизонты трудоустройства.
         </motion.p>
 
         <motion.div
@@ -70,6 +73,7 @@ const Hero = () => {
           </button>
           <a
             href="#program"
+            onClick={() => reachGoal("hero_program_click")}
             className="inline-flex items-center justify-center gap-3 px-7 py-4 border border-cream/40 text-cream font-semibold rounded-full uppercase tracking-wider text-sm text-center hover:bg-cream/10 transition-all duration-300"
           >
             <span>Смотреть программу</span>

@@ -91,7 +91,7 @@ const Solution = () => {
               с ними каждый день. И мы готовим именно таких профессионалов.
             </p>
 
-            <button onClick={scrollToForm} className="btn-cta">
+            <button onClick={scrollToForm} data-metrika-goal="about_cta_click" className="btn-cta">
               <span>Начать обучение</span>
               <ArrowUpRight size={16} />
             </button>

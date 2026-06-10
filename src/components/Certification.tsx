@@ -37,30 +37,21 @@ const Certification = () => {
             <p className="section-label">Сертификация</p>
             <h2 className="heading-lg mb-6">Документ, подтверждающий профессионализм</h2>
             <p className="text-lead mb-10">
-              По итогам обучения вы получаете сертификат установленного образца
-              в соответствии с требованиями Министерства образования и науки РФ —
-              для работы в премиальном сегменте.
+              По итогам обучения вы получаете сертификат установленного образца.
+              Информация о лицензировании предоставляется по запросу.
             </p>
 
             <div className="space-y-5">
               {[
-                { icon: FileCheck, text: "Сертификат установленного образца (Министерство образования и науки РФ)" },
-                { icon: Shield, text: "Информация о лицензировании по запросу" },
+                { icon: FileCheck, text: "Сертификат установленного образца" },
+                { icon: Shield, text: "Информация о лицензировании предоставляется по запросу" },
                 { icon: Award, text: "Признание в профессиональном сообществе" },
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <item.icon size={20} className="text-primary" />
                   </div>
-                  <p className="text-foreground text-sm font-medium">
-                    {index === 0 ? (
-                      <>
-                        Сертификат установленного образца (<span className="whitespace-nowrap">Министерство образования и науки РФ</span>)
-                      </>
-                    ) : (
-                      item.text
-                    )}
-                  </p>
+                  <p className="text-foreground text-sm font-medium">{item.text}</p>
                 </div>
               ))}
             </div>

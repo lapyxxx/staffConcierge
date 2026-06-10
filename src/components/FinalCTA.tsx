@@ -44,7 +44,7 @@ const FinalCTA = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <button onClick={scrollToForm} className="inline-flex items-center gap-3 px-7 py-4 bg-primary text-primary-foreground font-semibold rounded-full uppercase tracking-wider text-sm hover:shadow-lg transition-all">
+            <button onClick={scrollToForm} data-metrika-goal="final_cta_click" className="inline-flex items-center gap-3 px-7 py-4 bg-primary text-primary-foreground font-semibold rounded-full uppercase tracking-wider text-sm hover:shadow-lg transition-all">
               <span>Оставить заявку</span>
               <ArrowUpRight size={16} />
             </button>

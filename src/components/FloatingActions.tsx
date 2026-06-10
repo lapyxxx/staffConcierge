@@ -67,6 +67,7 @@ const FloatingActions = () => {
             <motion.button
               type="button"
               onClick={scrollToTop}
+              data-metrika-goal="floating_top_click"
               className="pointer-events-auto h-12 w-12 shrink-0 rounded-full bg-foreground border border-foreground shadow-xl ring-1 ring-background/50 flex items-center justify-center text-background hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
               aria-label="Вернуться в начало сайта"
               whileTap={{ scale: 0.94 }}
@@ -77,6 +78,7 @@ const FloatingActions = () => {
             <motion.button
               type="button"
               onClick={scrollToForm}
+              data-metrika-goal="floating_cta_click"
               className="pointer-events-auto flex-1 md:flex-none h-12 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-xl hover:opacity-95 transition-opacity"
               whileTap={{ scale: 0.96 }}
             >

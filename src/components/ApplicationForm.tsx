@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowUpRight, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { createLeadPayload, submitLead } from "@/lib/lead";
 
 const intentLabels: Record<string, string> = {
   consultation: "Консультация по курсу",
@@ -132,6 +133,7 @@ const formSchema = z.object({
     }
   }),
   email: z.string().email("Введите корректный email"),
+  website: z.string().max(200).optional(),
   consent: z.boolean().refine((val) => val === true, { message: "Необходимо согласие" }),
 });
 
@@ -213,13 +215,32 @@ const ApplicationForm = () => {
   });
 
   const onSubmit = async (data: FormData) => {
-    await new Promise((resolve) => setTimeout(resolve, 700));
+    if (data.website?.trim()) {
+      setIsSubmitted(true);
+      return;
+    }
+
+    const payload = createLeadPayload({
+      name: data.name,
+      contact: data.contact,
+      email: data.email,
+      intent: selectedIntent,
+    });
+
+    try {
+      await submitLead(payload);
+    } catch (error) {
+      toast({
+        title: "Не удалось отправить заявку",
+        description: "Попробуйте ещё раз или напишите нам в Telegram.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     window.dispatchEvent(
       new CustomEvent("lead-form-submit", {
-        detail: {
-          ...data,
-          intent: selectedIntent,
-        },
+        detail: payload,
       }),
     );
     setIsSubmitted(true);
@@ -284,7 +305,7 @@ const ApplicationForm = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="border border-border rounded-2xl p-7 md:p-10 space-y-5">
+            <form onSubmit={handleSubmit(onSubmit)} className="relative border border-border rounded-2xl p-7 md:p-10 space-y-5">
               <div>
                 <label htmlFor="name" className="label-modern">Имя</label>
                 <input id="name" type="text" autoComplete="name" {...register("name")} className="input-modern" placeholder="Ваше имя" />
@@ -316,6 +337,17 @@ const ApplicationForm = () => {
                 {errors.email && <p className="text-xs text-destructive mt-1">{errors.email.message}</p>}
               </div>
 
+              <div className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="website">Сайт</label>
+                <input
+                  id="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  {...register("website")}
+                />
+              </div>
+
               <div>
                 <label className="flex items-start gap-3 cursor-pointer">
                   <input type="checkbox" {...register("consent")} className="w-4 h-4 mt-0.5 accent-primary rounded flex-shrink-0" />
@@ -335,7 +367,7 @@ const ApplicationForm = () => {
                 {errors.consent && <p className="text-xs text-destructive mt-1">{errors.consent.message}</p>}
               </div>
 
-              <button type="submit" disabled={isSubmitting} className="btn-cta w-full justify-center">
+              <button type="submit" disabled={isSubmitting} data-metrika-goal="form_submit_click" className="btn-cta w-full justify-center">
                 <span>{isSubmitting ? "Отправка..." : "Отправить заявку"}</span>
                 <ArrowUpRight size={16} />
               </button>

@@ -183,6 +183,7 @@ const Pricing = () => {
 
               <button
                 onClick={() => setApplicationIntent(plan.key)}
+                data-metrika-goal={`pricing_${plan.key}_click`}
                 className={`w-full py-3.5 rounded-full font-semibold text-sm uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 ${
                   plan.highlighted
                     ? "bg-primary text-foreground hover:opacity-90"
@@ -270,6 +271,7 @@ const Pricing = () => {
             </p>
             <button
               onClick={() => setApplicationIntent("module")}
+              data-metrika-goal="module_cta_click"
               className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-semibold rounded-full text-sm uppercase tracking-wider hover:opacity-90 transition-all duration-200"
             >
               <span>Подобрать модуль</span>
@@ -283,6 +285,7 @@ const Pricing = () => {
                 key={item.label}
                 type="button"
                 onClick={() => setApplicationIntent(`module-${item.label}`)}
+                data-metrika-goal="module_card_click"
                 className="group relative min-h-[138px] sm:min-h-[150px] lg:min-h-[156px] rounded-2xl bg-background border border-border flex flex-col items-center justify-center p-4 hover:bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200"
               >
                 <div className="w-12 h-12 sm:w-[52px] sm:h-[52px] md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/15 transition-colors duration-200">

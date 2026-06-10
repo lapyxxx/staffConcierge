@@ -9,6 +9,7 @@ import Teachers from "@/components/Teachers";
 import TrustEvidence from "@/components/TrustEvidence";
 import Advantages from "@/components/Advantages";
 import Certification from "@/components/Certification";
+import ExamEmployment from "@/components/ExamEmployment";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
@@ -61,6 +62,7 @@ const Index = () => {
         <TrustEvidence />
         <Advantages />
         <Certification />
+        <ExamEmployment />
         <Pricing />
         <Reviews />
         <FAQ />

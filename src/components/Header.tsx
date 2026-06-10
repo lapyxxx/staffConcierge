@@ -79,7 +79,7 @@ const Header = () => {
           </nav>
 
           <div className="hidden lg:flex items-center gap-1.5">
-            <button onClick={scrollToForm} className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground font-semibold rounded-full text-xs uppercase tracking-wider hover:shadow-md transition-all duration-300">
+            <button onClick={scrollToForm} data-metrika-goal="header_cta_click" className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground font-semibold rounded-full text-xs uppercase tracking-wider hover:shadow-md transition-all duration-300">
               <span>Связаться</span>
               <ArrowUpRight size={14} />
             </button>
@@ -142,7 +142,7 @@ const Header = () => {
                   </motion.a>
                 ))}
               </div>
-              <button onClick={scrollToForm} className="btn-cta mt-2 w-full justify-center py-3">
+              <button onClick={scrollToForm} data-metrika-goal="mobile_header_cta_click" className="btn-cta mt-2 w-full justify-center py-3">
                 <span>Получить консультацию</span>
                 <ArrowUpRight size={16} />
               </button>
