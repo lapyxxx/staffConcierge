@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { ArrowUpRight, Globe, Instagram, Send, type LucideIcon } from "lucide-react";
+import { Globe, Send, type LucideIcon } from "lucide-react";
 import { useRef } from "react";
 import {
   Dialog,
@@ -77,11 +77,6 @@ const teachers: Teacher[] = [
         href: "https://t.me/doctor_annamama",
         icon: Send,
       },
-      {
-        label: "Instagram",
-        href: "https://www.instagram.com/doctor_annamama?igsh=MTRoYWp6YTN2MnJmZw==",
-        icon: Instagram,
-      },
     ],
   },
   {
@@ -120,11 +115,6 @@ const teachers: Teacher[] = [
     ],
     links: [
       {
-        label: "Instagram",
-        href: "https://www.instagram.com/tatyana.drugova?igsh=MXN6OGJpdzl5dHk1Zg==",
-        icon: Instagram,
-      },
-      {
         label: "Telegram",
         href: "https://t.me/tatyanadrugova",
         icon: Send,
@@ -139,12 +129,12 @@ const teachers: Teacher[] = [
     qualification: ["Детский психолог высшей квалификационной категории. Семейный терапевт"],
     about: [
       "10 лет практики в государственном детском образовательном центре при управлении образования",
-      "Спикер на ТВ, в подкастах и онлайн-курсах для родителей, автор статей в СМИ",
+      "спикер на ТВ, в подкастах и онлайн-курсах для родителей, автор статей в СМИ",
     ],
     experience: [
       "10 лет практики в государственном детском образовательном центре при управлении образования",
       "Преподаватель психологии школы приёмных родителей",
-      "Спикер на ТВ, в подкастах и онлайн-курсах для родителей, автор статей в СМИ",
+      "спикер на ТВ, в подкастах и онлайн-курсах для родителей, автор статей в СМИ",
       "Коррекция тревожности, неврозов и поведенческих нарушений у детей 2–12 лет",
       "Работа с родителями как основным инструментом изменений в состоянии ребёнка",
     ],
@@ -155,11 +145,6 @@ const teachers: Teacher[] = [
       "Взаимодействие с семьёй",
     ],
     links: [
-      {
-        label: "Instagram",
-        href: "https://www.instagram.com/psyxolog.dety?igsh=MXZqemMxMGg0NWpyag==",
-        icon: Instagram,
-      },
     ],
   },
   {
@@ -202,11 +187,6 @@ const teachers: Teacher[] = [
         href: "https://t.me/prokhorova_law",
         icon: Send,
       },
-      {
-        label: "Instagram",
-        href: "https://www.instagram.com/prokhorova_law/",
-        icon: Instagram,
-      },
     ],
   },
   {
@@ -242,11 +222,6 @@ const teachers: Teacher[] = [
         label: "Telegram",
         href: "https://t.me/smalysheva_style",
         icon: Send,
-      },
-      {
-        label: "Instagram",
-        href: "https://www.instagram.com/smalysheva_stylist?igsh=b29kdnZsY2o1b3di",
-        icon: Instagram,
       },
     ],
   },
@@ -333,11 +308,6 @@ const teachers: Teacher[] = [
       "Чемодан ребёнка в поездку",
     ],
     links: [
-      {
-        label: "Instagram",
-        href: "https://www.instagram.com/stylist__kids?igsh=MWh5dTB6dzB6N3hqeg==",
-        icon: Instagram,
-      },
     ],
   },
 ];
@@ -440,97 +410,102 @@ const Teachers = () => {
                       </div>
                     )}
 
-                    <div className="mt-auto inline-flex items-center justify-center gap-2 rounded-full border border-border px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-foreground transition-colors hover:border-primary/40 hover:text-primary">
+                    <div className="mt-auto inline-flex items-center justify-center rounded-full border border-border px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-foreground transition-colors hover:border-primary/40 hover:text-primary">
                       <span>Подробнее</span>
-                      <ArrowUpRight size={13} />
                     </div>
                   </div>
                 </motion.article>
               </DialogTrigger>
 
-              <DialogContent className="max-h-[86vh] max-w-4xl overflow-y-auto rounded-2xl border-border bg-background p-0">
-                <div className="grid">
-                  <div className="p-6 md:p-8">
-                    <DialogHeader className="mb-6">
-                      <DialogTitle className="font-heading text-2xl uppercase tracking-[0.08em]">
-                        {teacher.name}
-                      </DialogTitle>
-                      <DialogDescription>
-                        {teacher.role} · {teacher.specialization}
-                      </DialogDescription>
-                    </DialogHeader>
+              <DialogContent className="max-h-[86vh] max-w-4xl overflow-hidden rounded-2xl border-border bg-background p-0">
+                <div className="relative max-h-[86vh] overflow-hidden">
+                  <div className="max-h-[86vh] overflow-y-auto pr-3 [scrollbar-width:thin] [scrollbar-color:rgb(214_206_193)_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border/80 [&::-webkit-scrollbar-thumb:hover]:bg-border [&::-webkit-scrollbar-corner]:bg-transparent">
+                    <div className="p-6 md:p-8">
+                      <DialogHeader className="mb-6">
+                        <DialogTitle className="font-heading text-2xl uppercase tracking-[0.08em]">
+                          {teacher.name}
+                        </DialogTitle>
+                        <DialogDescription>
+                          {teacher.role} · {teacher.specialization}
+                        </DialogDescription>
+                      </DialogHeader>
 
-                    <div className="space-y-5 text-sm">
-                      <section>
-                        <p className="mb-2 font-heading text-xs font-semibold tracking-[0.12em] text-foreground">
-                          Квалификация
-                        </p>
-                        <div className="space-y-2">
-                          {teacher.qualification.map((item) => (
-                            <p key={item} className="text-muted-foreground leading-relaxed">{item}</p>
-                          ))}
-                        </div>
-                      </section>
-
-                      <section>
-                        <p className="mb-2 font-heading text-xs font-semibold tracking-[0.12em] text-foreground">
-                          О специалисте
-                        </p>
-                        <div className="space-y-2">
-                          {teacher.about.map((item) => (
-                            <p key={item} className="text-muted-foreground leading-relaxed">{item}</p>
-                          ))}
-                        </div>
-                      </section>
-
-                      <section>
-                        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground">
-                          Опыт
-                        </p>
-                        <ul className="space-y-2">
-                          {teacher.experience.map((item) => (
-                            <li key={item} className="flex gap-2 leading-relaxed text-muted-foreground">
-                              <span className="mt-[0.05em] text-foreground/70">—</span>
-                              <span>{stripListMarker(item).replace(/[.;]+$/, "")}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </section>
-
-                      <section>
-                        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground">
-                          Ведёт на курсе
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {teacher.subjects.map((subject) => (
-                            <span
-                              key={subject}
-                              className="inline-flex items-center rounded-full bg-olive-light/70 px-3 py-1 text-[11px] text-foreground"
-                            >
-                              {subject}
-                            </span>
-                          ))}
-                        </div>
-                      </section>
-
-                      {teacher.links.length > 0 && (
-                        <section className="border-t border-border/60 pt-4">
-                          <div className="flex flex-wrap gap-2">
-                            {teacher.links.map(({ href, icon: Icon, label }) => (
-                              <a
-                                key={href}
-                                href={href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 rounded-full border border-border/70 px-3 py-1.5 text-[11px] font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
-                              >
-                                <Icon size={13} />
-                                <span>{label}</span>
-                              </a>
+                      <div className="space-y-5 text-sm">
+                        <section>
+                          <p className="mb-2 font-heading text-xs font-semibold tracking-[0.12em] text-foreground">
+                            Квалификация
+                          </p>
+                          <div className="space-y-2">
+                            {teacher.qualification.map((item) => (
+                              <p key={item} className="text-muted-foreground leading-relaxed">
+                                {item}
+                              </p>
                             ))}
                           </div>
                         </section>
-                      )}
+
+                        <section>
+                          <p className="mb-2 font-heading text-xs font-semibold tracking-[0.12em] text-foreground">
+                            О специалисте
+                          </p>
+                          <div className="space-y-2">
+                            {teacher.about.map((item) => (
+                              <p key={item} className="text-muted-foreground leading-relaxed">
+                                {item}
+                              </p>
+                            ))}
+                          </div>
+                        </section>
+
+                        <section>
+                          <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground">
+                            Опыт
+                          </p>
+                          <ul className="space-y-2">
+                            {teacher.experience.map((item) => (
+                              <li key={item} className="flex gap-2 leading-relaxed text-muted-foreground">
+                                <span className="mt-[0.05em] text-foreground/70">—</span>
+                                <span>{stripListMarker(item).replace(/[.;]+$/, "")}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
+
+                        <section>
+                          <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground">
+                            Ведёт на курсе
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {teacher.subjects.map((subject) => (
+                              <span
+                                key={subject}
+                                className="inline-flex items-center rounded-full bg-olive-light/70 px-3 py-1 text-[11px] text-foreground"
+                              >
+                                {subject}
+                              </span>
+                            ))}
+                          </div>
+                        </section>
+
+                        {teacher.links.length > 0 && (
+                          <section className="border-t border-border/60 pt-4">
+                            <div className="flex flex-wrap gap-2">
+                              {teacher.links.map(({ href, icon: Icon, label }) => (
+                                <a
+                                  key={href}
+                                  href={href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 rounded-full border border-border/70 px-3 py-1.5 text-[11px] font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                                >
+                                  <Icon size={13} />
+                                  <span>{label}</span>
+                                </a>
+                              ))}
+                            </div>
+                          </section>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

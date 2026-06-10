@@ -35,11 +35,6 @@ const TrustEvidence = () => {
         >
           <p className="section-label">Доверие</p>
           <h2 className="heading-lg mb-6">Не обещаем гарантии, показываем систему</h2>
-          <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-            Пока у первого потока нет публичных историй выпускников, на сайте лучше не использовать
-            неподтверждённые проценты и обещания. Акцент переносим на опыт агентства, понятные
-            условия рекомендации и карьерную подготовку.
-          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
