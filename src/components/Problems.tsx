@@ -1,6 +1,8 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import aboutVideo from "@/assets/about.mp4";
+import { useRef, useState } from "react";
+import { Play } from "lucide-react";
+import promoVideo from "@/assets/promo-academy.mp4";
+import promoPoster from "@/assets/promo-academy-poster.jpg";
 import heroImage from "@/assets/hero-image.jpg";
 
 const audiences = [
@@ -23,7 +25,19 @@ const audiences = [
 
 const Problems = () => {
   const ref = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isPromoStarted, setIsPromoStarted] = useState(false);
+
+  const playPromo = () => {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+
+    setIsPromoStarted(true);
+    void video.play().catch(() => undefined);
+  };
 
   return (
     <section className="py-20 md:py-28 bg-background" ref={ref}>
@@ -82,17 +96,29 @@ const Problems = () => {
             initial={{ opacity: 0, scale: 0.97 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="rounded-lg overflow-hidden aspect-video"
+            className="group relative rounded-lg overflow-hidden aspect-video bg-foreground shadow-xl"
           >
             <video
-              src={aboutVideo}
-              autoPlay
-              loop
-              muted
+              ref={videoRef}
+              src={promoVideo}
+              poster={promoPoster}
+              controls={isPromoStarted}
               playsInline
               preload="metadata"
               className="w-full h-full object-cover"
             />
+            {!isPromoStarted && (
+              <button
+                type="button"
+                onClick={playPromo}
+                className="absolute inset-0 z-10 flex items-center justify-center bg-foreground/18 backdrop-blur-[1px] transition-colors duration-300 hover:bg-foreground/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                aria-label="Воспроизвести промо-ролик Staff Concierge Academy"
+              >
+                <span className="pointer-events-none flex h-20 w-20 items-center justify-center rounded-full border border-cream/70 bg-cream/95 text-foreground shadow-2xl transition-transform duration-300 group-hover:scale-105 md:h-24 md:w-24">
+                  <Play size={32} className="pointer-events-none ml-1 fill-current text-primary" strokeWidth={1.8} />
+                </span>
+              </button>
+            )}
           </motion.div>
         </div>
 
