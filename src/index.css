@@ -1,12 +1,6 @@
+@import "@fontsource/cormorant-garamond/400.css";
 @import "@fontsource/manrope/400.css";
 @import "@fontsource/manrope/500.css";
-@import "@fontsource/manrope/600.css";
-@import "@fontsource/manrope/700.css";
-@import "@fontsource/manrope/800.css";
-@import "@fontsource/dm-sans/400.css";
-@import "@fontsource/dm-sans/500.css";
-@import "@fontsource/dm-sans/600.css";
-@import "@fontsource/dm-sans/700.css";
 
 @tailwind base;
 @tailwind components;
@@ -14,34 +8,31 @@
 
 @layer base {
   :root {
-    /* Cream / ivory background */
+    --font-heading: "TT Ramillas", "Cormorant Garamond", Georgia, serif;
+    --font-body: "TT Commons Pro", Manrope, Arial, sans-serif;
+
+    /* Original warm ivory palette. */
     --background: 30 33% 94%;
     --foreground: 0 0% 10%;
 
-    /* Cards */
     --card: 30 25% 97%;
     --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    /* Primary — warm beige-gold #C9A96E */
     --primary: 38 46% 61%;
     --primary-foreground: 0 0% 10%;
 
-    /* Secondary — warm gray */
     --secondary: 30 15% 90%;
     --secondary-foreground: 0 0% 10%;
 
-    /* Muted */
     --muted: 30 12% 88%;
     --muted-foreground: 25 5% 46%;
 
-    /* Accent */
     --accent: 30 20% 92%;
     --accent-foreground: 0 0% 10%;
 
-    /* Dark section */
     --dark: 0 0% 10%;
     --dark-foreground: 30 33% 94%;
 
@@ -101,13 +92,14 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-weight: 300;
+    font-family: var(--font-body);
+    font-weight: 400;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold text-foreground leading-[1.1];
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-heading);
+    font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -115,32 +107,53 @@
   /* Display headings — uppercase Playfair Display */
   .heading-display {
     @apply text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-heading);
+    font-weight: 400;
     letter-spacing: 0.08em;
     line-height: 0.95;
   }
 
   .heading-xl {
     @apply text-3xl sm:text-4xl md:text-5xl font-bold uppercase;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-heading);
+    font-weight: 400;
     letter-spacing: 0.08em;
     line-height: 1.05;
   }
 
   .heading-lg {
     @apply text-2xl sm:text-3xl md:text-4xl font-bold uppercase;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-heading);
+    font-weight: 400;
     letter-spacing: 0.08em;
   }
 
   .heading-md {
     @apply text-xl sm:text-2xl font-bold uppercase;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-heading);
+    font-weight: 400;
     letter-spacing: 0.08em;
   }
 
   .text-lead {
     @apply text-base md:text-lg text-muted-foreground leading-relaxed;
+  }
+}
+
+@layer base {
+  button,
+  input,
+  textarea,
+  select,
+  nav,
+  [role="button"] {
+    font-family: var(--font-body);
+  }
+
+  button,
+  nav,
+  [role="button"] {
+    font-weight: 500;
   }
 }
 
@@ -171,7 +184,7 @@
     @apply bg-charcoal text-cream rounded-2xl overflow-hidden;
   }
 
-  /* CTA Button — beige-gold accent */
+  /* CTA Button */
   .btn-cta {
     @apply inline-flex items-center gap-3 px-7 py-4 bg-primary text-primary-foreground 
            font-semibold rounded-full transition-all duration-300 uppercase tracking-wider text-sm
