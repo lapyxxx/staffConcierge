@@ -1,9 +1,15 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 const PersonalData = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Обработка персональных данных — Staff Concierge Academy"
+        description="Политика обработки персональных данных в соответствии с ФЗ-152 на сайте Staff Concierge Academy."
+        path="/personal-data"
+      />
       <Header />
       <main className="section-padding">
         <div className="container-wide max-w-4xl">
@@ -76,7 +82,7 @@ const PersonalData = () => {
 
             <section>
               <p className="text-sm text-muted-foreground mt-8">
-                Дата последнего обновления: {new Date().toLocaleDateString('ru-RU')}
+                Дата последнего обновления: 15 июля 2026 года
               </p>
             </section>
           </div>

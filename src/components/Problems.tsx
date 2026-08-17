@@ -8,18 +8,23 @@ import heroImage from "@/assets/hero-image.jpg";
 const audiences = [
   {
     num: "01",
-    title: "Начинающие специалисты",
-    text: "Системные знания и навыки, которые другие собирают годами, — без типичных ошибок на старте.",
+    title: "Опытным няням",
+    text: "Есть сильный практический опыт, но сложно представить его работодателю и выйти на вакансии более высокого уровня.",
   },
   {
     num: "02",
-    title: "С опытом работы",
-    text: "Уверенность в своих действиях и соответствие стандартам премиального сегмента.",
+    title: "Начинающим специалистам",
+    text: "Хотите сразу сформировать профессиональную базу и избежать ошибок в работе с частной семьёй.",
   },
   {
     num: "03",
-    title: "С профильным образованием",
-    text: "Современные подходы к воспитанию и то, о чём не рассказывают на классических курсах.",
+    title: "Гувернанткам и педагогам",
+    text: "Хорошо владеете развитием и образованием ребёнка, но хотите освоить правила работы внутри семьи.",
+  },
+  {
+    num: "04",
+    title: "После перерыва",
+    text: "Возвращаетесь в профессию и хотите обновить знания, резюме и навыки прохождения интервью.",
   },
 ];
 
@@ -52,12 +57,12 @@ const Problems = () => {
             О курсе
           </span>
           <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-[0.15em] text-foreground">
-            Для кого этот курс
+            Кому подходит программа
           </h2>
         </motion.div>
 
         {/* Cards row */}
-        <div className="grid md:grid-cols-3 gap-4 mb-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {audiences.map((item, index) => (
             <motion.div
               key={index}
@@ -151,12 +156,12 @@ const Problems = () => {
             <div className="flex flex-col">
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "var(--font-heading)",
                   fontSize: '48px',
                   fontWeight: 500,
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
-                  color: '#1a1a1a',
+                  color: 'hsl(var(--foreground))',
                   marginBottom: '48px',
                 }}
                 className="mb-10 md:mb-12"
@@ -183,11 +188,11 @@ const Problems = () => {
                     <div className="flex flex-col">
                       <p
                         style={{
-                          fontFamily: "'Playfair Display', serif",
+                          fontFamily: "var(--font-heading)",
                           fontSize: '18px',
                           fontWeight: 500,
                           lineHeight: 1.6,
-                          color: '#1a1a1a',
+                          color: 'hsl(var(--foreground))',
                           marginBottom: item.secondary ? '4px' : 0,
                         }}
                       >
@@ -196,11 +201,11 @@ const Problems = () => {
                       {item.secondary && (
                         <p
                           style={{
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: "var(--font-body)",
                             fontSize: '16px',
                             fontWeight: 300,
                             lineHeight: 1.7,
-                            color: '#9a9a9a',
+                            color: 'hsl(var(--muted-foreground))',
                           }}
                         >
                           {item.secondary}

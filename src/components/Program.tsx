@@ -186,7 +186,7 @@ const Program = () => {
                   <AccordionItem
                     key={index}
                     value={`module-${index}`}
-                    className="border border-border rounded-xl overflow-hidden bg-background relative"
+                    className="border border-white/50 rounded-xl overflow-hidden bg-card/75 backdrop-blur-sm relative"
                   >
                     {/* Progress line on the left */}
                     <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary/10 rounded-full overflow-hidden">

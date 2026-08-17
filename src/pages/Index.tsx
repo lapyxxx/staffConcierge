@@ -20,6 +20,7 @@ import Loader from "@/components/Loader";
 import FloatingActions from "@/components/FloatingActions";
 import CookieNotice from "@/components/CookieNotice";
 import Analytics from "@/components/Analytics";
+import Seo from "@/components/Seo";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +50,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Staff Concierge Academy — обучение нянь и гувернанток для семей высокого уровня"
+        description="Практическая онлайн-программа от кадрового агентства Staff Concierge: детская психология и безопасность, стандарты работы в частной семье, карьерная упаковка и подготовка к собеседованию."
+        path="/"
+      />
       {isLoading && <Loader />}
       <Analytics />
       <Header />
@@ -59,12 +65,12 @@ const Index = () => {
         <Program />
         <Format />
         <Teachers />
-        <TrustEvidence />
         <Advantages />
+        <TrustEvidence />
         <Certification />
         <ExamEmployment />
-        <Pricing />
         <Reviews />
+        <Pricing />
         <FAQ />
         <FinalCTA />
         <ApplicationForm />

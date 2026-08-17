@@ -1,8 +1,14 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 const GovernessSalaryArticle = () => (
   <div className="min-h-screen bg-background">
+    <Seo
+      title="Сколько зарабатывает гувернантка в премиальном сегменте — Staff Concierge Academy"
+      description="От чего зависит доход гувернантки в премиальном сегменте и как карьерная подготовка помогает обсуждать условия."
+      path="/articles/governess-salary"
+    />
     <Header />
     <main className="container-wide pt-32 md:pt-40 pb-20 max-w-4xl">
       <p className="section-label">Материалы</p>

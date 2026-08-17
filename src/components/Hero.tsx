@@ -2,16 +2,10 @@ import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import heroVideo from "@/assets/hero-video.mp4";
 import { reachGoal } from "@/lib/analytics";
+import { openApplication } from "@/lib/application";
 
 const Hero = () => {
-  const scrollToForm = () => {
-    reachGoal("hero_consultation_click");
-    const url = new URL(window.location.href);
-    url.searchParams.set("intent", "consultation");
-    window.history.pushState({}, "", url);
-    window.dispatchEvent(new CustomEvent("application-intent-change"));
-    document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const scrollToForm = () => openApplication("consultation", "hero_consultation_click");
 
   return (
     <section className="relative min-h-screen flex items-end overflow-hidden">
@@ -25,7 +19,7 @@ const Hero = () => {
           preload="auto"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-charcoal/50" />
+        <div className="absolute inset-0 bg-dark/65" />
       </div>
 
       <div className="container-wide relative pb-16 md:pb-24 pt-32">
@@ -36,7 +30,7 @@ const Hero = () => {
           transition={{ duration: 0.6 }}
           className="text-xs font-semibold uppercase tracking-[0.25em] text-cream/70 mb-6"
         >
-          Staff Concierge Academy - место, где ваша карьера приобретает новый уровень
+          Staff Concierge Academy
         </motion.p>
 
         {/* Main heading */}
@@ -46,7 +40,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="heading-display text-cream mb-8 max-w-4xl"
         >
-          Staff Concierge Academy
+          Станьте няней, которой доверяют семьи высокого уровня
         </motion.h1>
 
         {/* Subtitle */}
@@ -54,11 +48,11 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="text-base md:text-lg text-cream/70 max-w-lg mb-6 md:mb-12"
+          className="text-base md:text-lg text-cream/70 max-w-xl mb-6 md:mb-12"
         >
-          Место, где педагог обретает свое признание и достойный заработок.
-          Вы переосмыслите свою профессию заново, раскроете сильные стороны
-          и расширите горизонты трудоустройства.
+          Практическая онлайн-программа от кадрового агентства Staff Concierge:
+          детская психология и безопасность, стандарты работы в частной семье,
+          профессиональная коммуникация, карьерная упаковка и подготовка к собеседованию.
         </motion.p>
 
         <motion.div

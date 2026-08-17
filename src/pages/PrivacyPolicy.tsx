@@ -1,9 +1,15 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Политика конфиденциальности — Staff Concierge Academy"
+        description="Порядок обработки и защиты персональных данных пользователей сайта Staff Concierge Academy."
+        path="/privacy"
+      />
       <Header />
       <main className="section-padding">
         <div className="container-wide max-w-4xl">
@@ -60,7 +66,7 @@ const PrivacyPolicy = () => {
 
             <section>
               <p className="text-sm text-muted-foreground mt-8">
-                Дата последнего обновления: {new Date().toLocaleDateString('ru-RU')}
+                Дата последнего обновления: 15 июля 2026 года
               </p>
             </section>
           </div>

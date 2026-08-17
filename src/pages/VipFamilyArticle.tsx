@@ -1,8 +1,14 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 const VipFamilyArticle = () => (
   <div className="min-h-screen bg-background">
+    <Seo
+      title="Как попасть работать в VIP-семью — Staff Concierge Academy"
+      description="Что важно для работы в VIP-семье: безопасность, этика, границы, коммуникация и подготовка к собеседованию."
+      path="/articles/vip-family"
+    />
     <Header />
     <main className="container-wide pt-32 md:pt-40 pb-20 max-w-4xl">
       <p className="section-label">Материалы</p>

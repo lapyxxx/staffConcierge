@@ -93,6 +93,26 @@ const reviews = [
   },
 ];
 
+// ─── Кейсы выпускников (п.5 сметы): формат «до → обучение → результат» ──────
+// Заполняются реальными материалами выпускников с разрешением на публикацию.
+// Пока массив пуст — блок не отображается, текущие отзывы семей остаются.
+type GraduateCase = {
+  name: string;
+  before: string; // ситуация до обучения
+  during: string; // что дало обучение
+  result: string; // результат после
+};
+
+const graduateCases: GraduateCase[] = [
+  // TODO(контент): добавить реальные кейсы выпускников.
+];
+
+const caseSteps: [keyof Omit<GraduateCase, "name">, string][] = [
+  ["before", "До обучения"],
+  ["during", "Обучение"],
+  ["result", "Результат"],
+];
+
 type Review = (typeof reviews)[number];
 
 const ReviewCard = ({ review, index, isInView }: { review: Review; index: number; isInView: boolean }) => (
@@ -100,7 +120,7 @@ const ReviewCard = ({ review, index, isInView }: { review: Review; index: number
     initial={{ opacity: 0, y: 18 }}
     animate={isInView ? { opacity: 1, y: 0 } : {}}
     transition={{ duration: 0.45, delay: index * 0.04 }}
-    className="h-full min-h-[300px] rounded-2xl border border-border bg-card p-5 shadow-sm"
+    className="h-full min-h-[300px] rounded-2xl border border-white/50 bg-card/80 backdrop-blur-sm p-5 shadow-sm"
   >
     <div className="mb-4 flex items-start justify-between gap-3">
       <div className="flex items-center gap-3">
@@ -129,7 +149,7 @@ const Reviews = () => {
   const isInView = useInView(ref, { once: true, margin: "-120px" });
 
   return (
-    <section className="section-padding bg-background" ref={ref}>
+    <section id="reviews" className="section-padding bg-background" ref={ref}>
       <div className="container-wide">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -145,6 +165,36 @@ const Reviews = () => {
             Отзывы семей, из чьих запросов и родилась эта программа.
           </p>
         </motion.div>
+
+        {graduateCases.length > 0 && (
+          <div className="mb-14 md:mb-16">
+            <h3 className="heading-md mb-6 md:mb-8">Кейсы выпускников</h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+              {graduateCases.map((item, index) => (
+                <motion.article
+                  key={item.name}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.45, delay: index * 0.06 }}
+                  className="flex flex-col rounded-2xl border border-white/50 bg-card/80 backdrop-blur-sm p-6 shadow-sm"
+                >
+                  <p className="text-sm font-semibold text-foreground mb-4">{item.name}</p>
+                  <div className="space-y-4">
+                    {caseSteps.map(([field, label], stepIndex) => (
+                      <div key={field} className="relative pl-6">
+                        <span className="absolute left-0 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary">
+                          {stepIndex + 1}
+                        </span>
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-primary mb-1">{label}</p>
+                        <p className="text-sm leading-relaxed text-muted-foreground">{item[field]}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="-mx-6 overflow-x-auto px-6 pb-2 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] lg:hidden [&::-webkit-scrollbar]:hidden">
           <div className="flex gap-4 md:gap-5">

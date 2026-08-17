@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://staffconcierge.academy/</loc>
+    <loc>https://staff-academia.ru/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://staffconcierge.academy/privacy</loc>
+    <loc>https://staff-academia.ru/privacy</loc>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://staffconcierge.academy/terms</loc>
+    <loc>https://staff-academia.ru/terms</loc>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://staffconcierge.academy/personal-data</loc>
+    <loc>https://staff-academia.ru/personal-data</loc>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://staffconcierge.academy/articles/vip-family</loc>
+    <loc>https://staff-academia.ru/articles/vip-family</loc>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://staffconcierge.academy/articles/governess-salary</loc>
+    <loc>https://staff-academia.ru/articles/governess-salary</loc>
     <priority>0.4</priority>
   </url>
 </urlset>

@@ -6,6 +6,7 @@ import { z } from "zod";
 import { ArrowUpRight, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { createLeadPayload, submitLead } from "@/lib/lead";
+import { reachGoal } from "@/lib/analytics";
 
 const intentLabels: Record<string, string> = {
   consultation: "Консультация по курсу",
@@ -132,7 +133,7 @@ const formSchema = z.object({
       });
     }
   }),
-  email: z.string().email("Введите корректный email"),
+  experience: z.string().max(500).optional(),
   website: z.string().max(200).optional(),
   consent: z.boolean().refine((val) => val === true, { message: "Необходимо согласие" }),
 });
@@ -142,6 +143,7 @@ type FormData = z.infer<typeof formSchema>;
 const ApplicationForm = () => {
   const ref = useRef(null);
   const contactValueRef = useRef("");
+  const formStartedRef = useRef(false);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedIntent, setSelectedIntent] = useState(() => getIntentLabel(new URLSearchParams(window.location.search).get("intent")));
@@ -214,6 +216,17 @@ const ApplicationForm = () => {
     },
   });
 
+  const handleFormStart = () => {
+    if (!formStartedRef.current) {
+      formStartedRef.current = true;
+      reachGoal("form_start");
+    }
+  };
+
+  const onError = () => {
+    reachGoal("form_error", { type: "validation" });
+  };
+
   const onSubmit = async (data: FormData) => {
     if (data.website?.trim()) {
       setIsSubmitted(true);
@@ -223,13 +236,15 @@ const ApplicationForm = () => {
     const payload = createLeadPayload({
       name: data.name,
       contact: data.contact,
-      email: data.email,
+      experience: data.experience?.trim() || undefined,
       intent: selectedIntent,
     });
+    payload.website = data.website?.trim() || undefined;
 
     try {
       await submitLead(payload);
     } catch (error) {
+      reachGoal("form_error", { type: "delivery" });
       toast({
         title: "Не удалось отправить заявку",
         description: "Попробуйте ещё раз или напишите нам в Telegram.",
@@ -259,12 +274,22 @@ const ApplicationForm = () => {
             <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center mx-auto mb-6">
               <Check size={32} className="text-primary-foreground" />
             </div>
-            <h2 className="heading-md mb-4">Спасибо за заявку!</h2>
-            <p className="text-muted-foreground text-sm mb-2">Запрос: {selectedIntent}</p>
-            <p className="text-muted-foreground text-sm mb-6">Менеджер свяжется с вами и подскажет следующий шаг.</p>
-            <a href="https://t.me/staffconcierge" target="_blank" rel="noopener noreferrer" className="text-primary text-sm font-medium hover:underline">
-              Написать нам в Telegram →
-            </a>
+            <h2 className="heading-md mb-4">Спасибо! Заявка получена</h2>
+            <p className="text-muted-foreground text-sm mb-2">Ваш запрос: {selectedIntent}</p>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-8 max-w-md mx-auto">
+              Специалист Staff Concierge Academy свяжется с вами в ближайшее рабочее время.
+              Пока вы ждёте — посмотрите программу обучения или подпишитесь на Telegram Академии.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a href="#program" className="btn-cta">
+                <span>Смотреть программу</span>
+                <ArrowUpRight size={16} />
+              </a>
+              <a href="https://t.me/staffconcierge" target="_blank" rel="noopener noreferrer" className="btn-outline">
+                <span>Telegram Академии</span>
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -284,14 +309,14 @@ const ApplicationForm = () => {
             <p className="section-label">Заявка</p>
             <h2 className="heading-lg mb-6">Оставьте контакт</h2>
             <p className="text-muted-foreground text-sm mb-6">
-              Форма короткая: город, опыт и детали тарифа менеджер уточнит в переписке или на звонке.
+              Обязательны только имя и контакт. Опыт и детали тарифа — по желанию: остальное менеджер уточнит в переписке или на звонке.
             </p>
             <div className="rounded-2xl border border-primary/20 bg-primary/10 p-5 mb-8">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-2">Выбранный запрос</p>
               <p className="text-foreground font-semibold">{selectedIntent}</p>
             </div>
             <div className="space-y-3">
-              {["Ответим на вопросы", "Поможем выбрать тариф", "Пришлём материалы и условия на email"].map((item) => (
+              {["Ответим на вопросы", "Поможем выбрать тариф", "Пришлём материалы и условия удобным способом"].map((item) => (
                 <div key={item} className="flex items-center gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                   <span className="text-foreground text-sm">{item}</span>
@@ -305,7 +330,7 @@ const ApplicationForm = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="relative border border-border rounded-2xl p-7 md:p-10 space-y-5">
+            <form onSubmit={handleSubmit(onSubmit, onError)} onFocusCapture={handleFormStart} className="relative border border-white/50 bg-card/60 backdrop-blur-sm rounded-2xl p-7 md:p-10 space-y-5">
               <div>
                 <label htmlFor="name" className="label-modern">Имя</label>
                 <input id="name" type="text" autoComplete="name" {...register("name")} className="input-modern" placeholder="Ваше имя" />
@@ -332,9 +357,18 @@ const ApplicationForm = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="label-modern">Email</label>
-                <input id="email" type="text" inputMode="email" autoComplete="email" {...register("email")} className="input-modern" placeholder="your@email.com" />
-                {errors.email && <p className="text-xs text-destructive mt-1">{errors.email.message}</p>}
+                <label htmlFor="experience" className="label-modern">
+                  Опыт <span className="normal-case tracking-normal font-normal text-muted-foreground">(необязательно)</span>
+                </label>
+                <input
+                  id="experience"
+                  type="text"
+                  autoComplete="off"
+                  {...register("experience")}
+                  className="input-modern"
+                  placeholder="Например: работали няней, без опыта в сфере"
+                />
+                {errors.experience && <p className="text-xs text-destructive mt-1">{errors.experience.message}</p>}
               </div>
 
               <div className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
@@ -368,9 +402,12 @@ const ApplicationForm = () => {
               </div>
 
               <button type="submit" disabled={isSubmitting} data-metrika-goal="form_submit_click" className="btn-cta w-full justify-center">
-                <span>{isSubmitting ? "Отправка..." : "Отправить заявку"}</span>
+                <span>{isSubmitting ? "Отправляем..." : "Получить консультацию"}</span>
                 <ArrowUpRight size={16} />
               </button>
+              <p className="text-[11px] text-muted-foreground text-center">
+                Консультация не обязывает к покупке. Менеджер свяжется с вами в рабочее время.
+              </p>
             </form>
           </motion.div>
         </div>

@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://staffconcierge.academy/sitemap.xml
+Sitemap: https://staff-academia.ru/sitemap.xml

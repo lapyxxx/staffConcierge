@@ -19,6 +19,7 @@ import expertDusmanova from "@/assets/expert-dusmanova.jpg";
 import expertIppolitova from "@/assets/expert-ippolitova.jpg";
 import expertIpatova from "@/assets/expert-ipatova.jpg";
 import expertFilippova from "@/assets/expert-filippova.jpg";
+import expertGorbatenko from "@/assets/expert-gorbatenko.jpg";
 
 type ExpertLink = {
   label: string;
@@ -301,8 +302,10 @@ const teachers: Teacher[] = [
     ],
     aboutPreview: "Базовый гардероб специалиста, детский гардероб по сезону, чемодан ребёнка в поездку",
     experience: [
-      "Детский стилист",
-      "В документе опыт специалиста уточняется",
+      "Более 6 лет практики в качестве детского и взрослого стилиста",
+      "Специалист по созданию капсульных гардеробов, функциональной одежды и организации детского гардероба",
+      "Автор сезонных гайдов и школьных справочников для подготовки к новому сезону",
+      "Регулярно повышает квалификацию в профессии",
     ],
     subjects: [
       "Базовый гардероб специалиста",
@@ -337,6 +340,30 @@ const teachers: Teacher[] = [
       "Домашние занятия и задания",
       "Тайм-менеджмент ребенка",
       "Развитие самостоятельности и ответственности",
+    ],
+    links: [],
+  },
+  {
+    image: expertGorbatenko,
+    name: "Анна Горбатенко",
+    role: "Финансовый эксперт, преподаватель финансовых дисциплин",
+    specialization: "Финансовая грамотность, финансовое планирование",
+    qualification: [
+      "Два профильных образования: экономист-математик и магистратура педагогического института",
+    ],
+    about: [
+      "20 лет работы в финансовой сфере, включая карьеру в крупных коммерческих банках, входящих в ТОП-5",
+      "Совмещает практическую работу в финансовом секторе с преподаванием финансовых дисциплин в институте",
+    ],
+    experience: [
+      "20 лет работы в финансовой сфере, включая карьеру в крупных коммерческих банках, входящих в ТОП-5",
+      "Два профильных образования: экономист-математик и магистратура педагогического института — редкое сочетание глубокой финансовой квалификации с педагогической подготовкой",
+      "Совмещает практическую работу в финансовом секторе с преподаванием финансовых дисциплин в институте",
+    ],
+    subjects: [
+      "Финансовая грамотность",
+      "Финансовое планирование",
+      "Переработки и доп.оплата",
     ],
     links: [],
   },
@@ -417,7 +444,7 @@ const Teachers = () => {
                   initial={{ opacity: 0, y: 24 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.55, delay: index * 0.08 }}
-                  className="card-elevated overflow-hidden flex h-full cursor-pointer flex-col bg-background/80 outline-none transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-primary/50"
+                  className="card-elevated overflow-hidden flex h-full cursor-pointer flex-col bg-card/80 outline-none transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-primary/50"
                 >
                   <div className="aspect-[4/3] overflow-hidden bg-muted">
                     <img
@@ -480,9 +507,9 @@ const Teachers = () => {
                 </motion.article>
               </DialogTrigger>
 
-              <DialogContent className="max-h-[86vh] max-w-4xl overflow-hidden rounded-2xl border-border bg-background p-0">
+              <DialogContent className="max-h-[86vh] max-w-4xl overflow-hidden rounded-2xl border-white/50 bg-card p-0">
                 <div className="relative max-h-[86vh] overflow-hidden">
-                  <div className="max-h-[86vh] overflow-y-auto pr-3 [scrollbar-width:thin] [scrollbar-color:rgb(214_206_193)_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border/80 [&::-webkit-scrollbar-thumb:hover]:bg-border [&::-webkit-scrollbar-corner]:bg-transparent">
+                  <div className="max-h-[86vh] overflow-y-auto pr-3 [scrollbar-width:thin] [scrollbar-color:rgb(100_121_140)_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border/80 [&::-webkit-scrollbar-thumb:hover]:bg-primary/60 [&::-webkit-scrollbar-corner]:bg-transparent">
                     <div className="p-6 md:p-8">
                       <DialogHeader className="mb-6">
                         <DialogTitle className="font-heading text-2xl uppercase tracking-[0.08em]">

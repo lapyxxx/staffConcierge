@@ -3,6 +3,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logoWhite from "@/assets/logo-white.png";
 import logoBlack from "@/assets/logo-black.png";
+import { openApplication } from "@/lib/application";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,17 +29,14 @@ const Header = () => {
   const navItems = [
     { label: "О КУРСЕ", href: "#about" },
     { label: "ПРОГРАММА", href: "#program" },
-    { label: "ПРЕПОДАВАТЕЛИ", href: "#teachers" },
+    { label: "ЭКСПЕРТЫ", href: "#teachers" },
+    { label: "ОТЗЫВЫ", href: "#reviews" },
     { label: "ТАРИФЫ", href: "#pricing" },
     { label: "FAQ", href: "#faq" },
   ];
 
   const scrollToForm = () => {
-    const url = new URL(window.location.href);
-    url.searchParams.set("intent", "consultation");
-    window.history.pushState({}, "", url);
-    window.dispatchEvent(new CustomEvent("application-intent-change"));
-    document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" });
+    openApplication("consultation");
     setIsMenuOpen(false);
   };
 
@@ -80,7 +78,7 @@ const Header = () => {
 
           <div className="hidden lg:flex items-center gap-1.5">
             <button onClick={scrollToForm} data-metrika-goal="header_cta_click" className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground font-semibold rounded-full text-xs uppercase tracking-wider hover:shadow-md transition-all duration-300">
-              <span>Связаться</span>
+              <span>Получить консультацию</span>
               <ArrowUpRight size={14} />
             </button>
 
@@ -95,7 +93,7 @@ const Header = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.92 }}
                     transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 rounded-full border border-border bg-background shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
+                    className="absolute inset-0 rounded-full border border-white/50 bg-card/90 shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
                     aria-label="Открыть уведомление о cookie"
                   >
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" aria-hidden="true">

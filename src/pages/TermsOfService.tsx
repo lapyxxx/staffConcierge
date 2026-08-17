@@ -1,9 +1,15 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 const TermsOfService = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Пользовательское соглашение — Staff Concierge Academy"
+        description="Условия использования сайта и образовательных материалов Staff Concierge Academy."
+        path="/terms"
+      />
       <Header />
       <main className="section-padding">
         <div className="container-wide max-w-4xl">
@@ -67,7 +73,7 @@ const TermsOfService = () => {
 
             <section>
               <p className="text-sm text-muted-foreground mt-8">
-                Дата последнего обновления: {new Date().toLocaleDateString('ru-RU')}
+                Дата последнего обновления: 15 июля 2026 года
               </p>
             </section>
           </div>

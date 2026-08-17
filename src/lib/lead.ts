@@ -1,11 +1,13 @@
 export type LeadPayload = {
   name: string;
   contact: string;
-  email: string;
+  email?: string;
+  experience?: string;
   intent: string;
   page: string;
   submittedAt: string;
   utm: Record<string, string>;
+  website?: string;
 };
 
 const getUtmParams = () => {
@@ -22,7 +24,7 @@ const getUtmParams = () => {
 };
 
 export const createLeadPayload = (
-  data: Pick<LeadPayload, "name" | "contact" | "email" | "intent">,
+  data: Pick<LeadPayload, "name" | "contact" | "email" | "experience" | "intent">,
 ): LeadPayload => ({
   ...data,
   page: window.location.href,
@@ -31,13 +33,7 @@ export const createLeadPayload = (
 });
 
 export const submitLead = async (payload: LeadPayload) => {
-  const webhookUrl = import.meta.env.VITE_LEAD_WEBHOOK_URL;
-
-  if (!webhookUrl) {
-    return { delivered: false, reason: "missing_webhook" as const };
-  }
-
-  const response = await fetch(webhookUrl, {
+  const response = await fetch("/api/lead.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -45,6 +41,12 @@ export const submitLead = async (payload: LeadPayload) => {
 
   if (!response.ok) {
     throw new Error(`Lead webhook failed with status ${response.status}`);
+  }
+
+  const result: unknown = await response.json();
+
+  if (!result || typeof result !== "object" || !("delivered" in result) || result.delivered !== true) {
+    throw new Error("Lead API returned an invalid response");
   }
 
   return { delivered: true as const };

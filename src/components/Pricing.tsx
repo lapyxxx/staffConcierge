@@ -1,5 +1,7 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { reachGoal } from "@/lib/analytics";
+import { openApplication } from "@/lib/application";
 import {
   ArrowUpRight,
   BookOpen,
@@ -11,13 +13,7 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 
-const setApplicationIntent = (intent: string) => {
-  const url = new URL(window.location.href);
-  url.searchParams.set("intent", intent);
-  window.history.pushState({}, "", url);
-  window.dispatchEvent(new CustomEvent("application-intent-change"));
-  document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" });
-};
+const setApplicationIntent = (intent: string) => openApplication(intent);
 
 const plans = [
   {
@@ -34,6 +30,14 @@ const plans = [
       "Тестирование по ключевым темам",
       "Сертификат после прохождения программы",
     ],
+    // TODO(контент): вставить утверждённые условия тарифа. Пустые строки не отображаются.
+    terms: {
+      access: "",
+      support: "",
+      installment: "",
+      refund: "",
+      recommendation: "",
+    },
     cta: "Начать самостоятельно",
     highlighted: false,
   },
@@ -52,6 +56,14 @@ const plans = [
       "Разборы реальных кейсов",
       "Карьерный блок: резюме, анкета, самопрезентация, собеседование",
     ],
+    // TODO(контент): вставить утверждённые условия тарифа. Пустые строки не отображаются.
+    terms: {
+      access: "",
+      support: "",
+      installment: "",
+      refund: "",
+      recommendation: "",
+    },
     cta: "Выбрать PRO",
     highlighted: true,
   },
@@ -70,9 +82,26 @@ const plans = [
       "Личная упаковка анкеты и резюме",
       "Стратегия дохода и приоритетная обратная связь",
     ],
+    // TODO(контент): вставить утверждённые условия тарифа. Пустые строки не отображаются.
+    terms: {
+      access: "",
+      support: "",
+      installment: "",
+      refund: "",
+      recommendation: "",
+    },
     cta: "Подать заявку на VIP",
     highlighted: false,
   },
+];
+
+// Порядок и подписи строк с условиями тарифа.
+const termLabels: [keyof (typeof plans)[number]["terms"], string][] = [
+  ["access", "Доступ"],
+  ["support", "Поддержка"],
+  ["installment", "Рассрочка"],
+  ["refund", "Возврат"],
+  ["recommendation", "Рекомендация"],
 ];
 
 const comparisonRows = [
@@ -96,6 +125,12 @@ const modules = [
 const Pricing = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (isInView) {
+      reachGoal("pricing_view");
+    }
+  }, [isInView]);
 
   return (
     <section id="pricing" className="py-24 md:py-32 bg-secondary" ref={ref}>
@@ -125,41 +160,41 @@ const Pricing = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`rounded-2xl p-7 md:p-8 flex flex-col transition-all duration-300 ${
                 plan.highlighted
-                  ? "bg-foreground text-background ring-1 ring-foreground"
-                  : "bg-background border border-border"
+                  ? "bg-dark text-dark-foreground ring-1 ring-dark"
+                  : "bg-card/80 backdrop-blur-sm border border-white/50"
               }`}
             >
               {plan.highlighted && (
-                <span className="inline-block text-[10px] font-semibold uppercase tracking-[0.22em] text-background bg-primary px-3 py-1 rounded-full mb-4 self-start">
+                <span className="inline-block text-[10px] font-semibold uppercase tracking-[0.22em] text-primary bg-white px-3 py-1 rounded-full mb-4 self-start">
                   Рекомендуемый тариф
                 </span>
               )}
 
               <h3 className={`text-xl font-bold uppercase tracking-[0.1em] mb-1 ${
-                plan.highlighted ? "text-background" : "text-foreground"
+                plan.highlighted ? "text-dark-foreground" : "text-foreground"
               }`}>
                 {plan.name}
               </h3>
-              <p className={`text-xs mb-6 ${plan.highlighted ? "text-background/55" : "text-muted-foreground"}`}>
+              <p className={`text-xs mb-6 ${plan.highlighted ? "text-dark-foreground/65" : "text-muted-foreground"}`}>
                 {plan.subtitle}
               </p>
 
               <div className="mb-6">
                 <span className={`text-4xl font-extrabold tracking-tight ${
-                  plan.highlighted ? "text-background" : "text-foreground"
+                  plan.highlighted ? "text-dark-foreground" : "text-foreground"
                 }`}>
                   {plan.price}
                 </span>
-                <span className={plan.highlighted ? "text-background/50" : "text-muted-foreground"}> ₽</span>
+                <span className={plan.highlighted ? "text-dark-foreground/55" : "text-muted-foreground"}> ₽</span>
               </div>
 
-              <div className={`space-y-3 mb-7 pb-6 border-b ${plan.highlighted ? "border-background/15" : "border-border"}`}>
-                <p className={`text-sm leading-relaxed ${plan.highlighted ? "text-background/75" : "text-muted-foreground"}`}>
-                  <span className={plan.highlighted ? "text-background font-semibold" : "text-foreground font-semibold"}>Для кого: </span>
+              <div className={`space-y-3 mb-7 pb-6 border-b ${plan.highlighted ? "border-white/15" : "border-border"}`}>
+                <p className={`text-sm leading-relaxed ${plan.highlighted ? "text-dark-foreground/80" : "text-muted-foreground"}`}>
+                  <span className={plan.highlighted ? "text-dark-foreground font-semibold" : "text-foreground font-semibold"}>Для кого: </span>
                   {plan.forWhom}
                 </p>
-                <p className={`text-sm leading-relaxed ${plan.highlighted ? "text-background/75" : "text-muted-foreground"}`}>
-                  <span className={plan.highlighted ? "text-background font-semibold" : "text-foreground font-semibold"}>Ценность: </span>
+                <p className={`text-sm leading-relaxed ${plan.highlighted ? "text-dark-foreground/80" : "text-muted-foreground"}`}>
+                  <span className={plan.highlighted ? "text-dark-foreground font-semibold" : "text-foreground font-semibold"}>Ценность: </span>
                   {plan.value}
                 </p>
               </div>
@@ -168,12 +203,12 @@ const Pricing = () => {
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                      plan.highlighted ? "bg-primary" : "bg-primary/15"
+                      plan.highlighted ? "bg-white/20" : "bg-primary/15"
                     }`}>
-                      <Check size={10} className={plan.highlighted ? "text-foreground" : "text-primary"} />
+                      <Check size={10} className={plan.highlighted ? "text-dark-foreground" : "text-primary"} />
                     </div>
                     <span className={`text-sm leading-relaxed ${
-                      plan.highlighted ? "text-background/72" : "text-muted-foreground"
+                      plan.highlighted ? "text-dark-foreground/75" : "text-muted-foreground"
                     }`}>
                       {feature}
                     </span>
@@ -181,13 +216,30 @@ const Pricing = () => {
                 ))}
               </ul>
 
+              {termLabels.some(([field]) => plan.terms[field]) && (
+                <div className={`space-y-2.5 mb-7 pt-5 border-t ${plan.highlighted ? "border-white/15" : "border-border"}`}>
+                  {termLabels.map(([field, label]) =>
+                    plan.terms[field] ? (
+                      <div key={field} className="flex gap-2 text-sm leading-relaxed">
+                        <span className={`shrink-0 font-semibold ${plan.highlighted ? "text-dark-foreground" : "text-foreground"}`}>
+                          {label}:
+                        </span>
+                        <span className={plan.highlighted ? "text-dark-foreground/75" : "text-muted-foreground"}>
+                          {plan.terms[field]}
+                        </span>
+                      </div>
+                    ) : null,
+                  )}
+                </div>
+              )}
+
               <button
                 onClick={() => setApplicationIntent(plan.key)}
                 data-metrika-goal={`pricing_${plan.key}_click`}
                 className={`w-full py-3.5 rounded-full font-semibold text-sm uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 ${
                   plan.highlighted
-                    ? "bg-primary text-foreground hover:opacity-90"
-                    : "bg-foreground text-background hover:opacity-90"
+                    ? "bg-white text-primary hover:bg-white/90"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90"
                 }`}
               >
                 <span>{plan.cta}</span>
@@ -208,7 +260,7 @@ const Pricing = () => {
             ["PRO", "если важны поддержка, обратная связь, разбор ошибок и подготовка к работе."],
             ["VIP", "если нужен индивидуальный подход, карьерная упаковка и подготовка к премиальному сегменту."],
           ].map(([title, text]) => (
-            <div key={title} className="bg-background border border-border rounded-2xl p-6">
+            <div key={title} className="bg-card/75 backdrop-blur-sm border border-white/50 rounded-2xl p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">Когда выбирать</p>
               <h3 className="text-lg font-bold mb-2">{title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
@@ -220,7 +272,7 @@ const Pricing = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 overflow-hidden rounded-2xl border border-border bg-background"
+          className="mt-16 overflow-hidden rounded-2xl border border-white/50 bg-card/75 backdrop-blur-sm"
         >
           <div className="p-6 md:p-8 border-b border-border">
             <p className="section-label mb-3">Сравнение</p>
@@ -272,7 +324,7 @@ const Pricing = () => {
             <button
               onClick={() => setApplicationIntent("module")}
               data-metrika-goal="module_cta_click"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-semibold rounded-full text-sm uppercase tracking-wider hover:opacity-90 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-full text-sm uppercase tracking-wider hover:bg-primary/90 transition-all duration-200"
             >
               <span>Подобрать модуль</span>
               <ArrowUpRight size={14} />
@@ -286,7 +338,7 @@ const Pricing = () => {
                 type="button"
                 onClick={() => setApplicationIntent(`module-${item.label}`)}
                 data-metrika-goal="module_card_click"
-                className="group relative min-h-[138px] sm:min-h-[150px] lg:min-h-[156px] rounded-2xl bg-background border border-border flex flex-col items-center justify-center p-4 hover:bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200"
+                className="group relative min-h-[138px] sm:min-h-[150px] lg:min-h-[156px] rounded-2xl bg-card/75 backdrop-blur-sm border border-white/50 flex flex-col items-center justify-center p-4 hover:bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200"
               >
                 <div className="w-12 h-12 sm:w-[52px] sm:h-[52px] md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/15 transition-colors duration-200">
                   <item.icon size={26} className="text-primary/70 group-hover:text-primary transition-colors duration-200" strokeWidth={1.5} />

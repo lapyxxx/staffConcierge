@@ -68,7 +68,7 @@ const FloatingActions = () => {
               type="button"
               onClick={scrollToTop}
               data-metrika-goal="floating_top_click"
-              className="pointer-events-auto h-12 w-12 shrink-0 rounded-full bg-foreground border border-foreground shadow-xl ring-1 ring-background/50 flex items-center justify-center text-background hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+              className="pointer-events-auto h-12 w-12 shrink-0 rounded-full bg-dark border border-dark shadow-xl ring-1 ring-white/30 flex items-center justify-center text-dark-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors"
               aria-label="Вернуться в начало сайта"
               whileTap={{ scale: 0.94 }}
             >
