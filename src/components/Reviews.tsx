@@ -1,6 +1,5 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Quote, Star } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -8,90 +7,18 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import review01 from "@/assets/reviews/review-01.jpg";
+import review02 from "@/assets/reviews/review-02.jpg";
+import review03 from "@/assets/reviews/review-03.jpg";
+import review04 from "@/assets/reviews/review-04.jpg";
+import review05 from "@/assets/reviews/review-05.jpg";
+import review06 from "@/assets/reviews/review-06.jpg";
+import review07 from "@/assets/reviews/review-07.jpg";
+import review08 from "@/assets/reviews/review-08.jpg";
+import review09 from "@/assets/reviews/review-09.jpg";
+import review10 from "@/assets/reviews/review-10.jpg";
 
-const reviews = [
-  {
-    name: "Светлана",
-    title: "Не просто человека с корочками, а именно «своего» педагога по темпераменту",
-    text:
-      "Мы очень переживали, потому что сын (3 года) тяжело сходится с чужими. В агентстве нас выслушали и предложили не просто человека с корочками, а именно «своего» педагога по темпераменту. Уже на собеседовании было понятно — попали в точку. Прошло 2 месяца: ребёнок не плачет, занимаются развивашками, гуляют, готовят вместе обеды. Я спокойно работаю, дома порядок и атмосфера. Огромная благодарность вашей команде за подбор!",
-  },
-  {
-    name: "Евгений Н.",
-    title: "У него непростой характер — и всё равно нашли",
-    text: "Долго искал няню в семью, перепробовал множество вариантов, но ничего не подходило. Менеджер Анна буквально за пару дней подыскала мне очень хорошую девушку, которая сумела найти коннект с моим сыном — и я теперь со спокойной душой могу оставлять его с ней, а у него непростой характер. Рекомендую",
-  },
-  {
-    name: "Павел Самонов",
-    title: "С первого раза нашли именно того человека, которого мы искали",
-    text: "Огромное спасибо агентству Staff Консьерж за профессиональный подбор няни для нашего малыша. С первого раза нашли именно того человека, которого мы искали!",
-  },
-  {
-    name: "Юля Медведева",
-    title: "До этого пытались не один раз найти в других агентствах — не могли",
-    text: "На консультации специалист Евгения расспросила всю необходимую информацию, уточнила наши пожелания (какой мы видим идеальную няню для нашего ребенка). В итоге ребёнок теперь с предвкушением ждёт каждой встречи с няней — она одна из многих (до этого пытались не один раз найти в других агентствах) смогла найти подход к нему, это просто чудо какое-то.",
-  },
-  {
-    name: "Кристина Борисова",
-    title: "Подошла нам по всем критериям — а их было немало",
-    text: "Благодаря Евгении, мы нашли няню, которая подошла нам по всем критериям (а их было немало для выбора). Но что самое главное — она отличается большим профессионализмом и располагает внушительным доверием. Ребёнок доволен, родители отдохнувшие, и все счастливы. Будем пользоваться Вашими услугами теперь всегда.",
-  },
-  {
-    name: "Sibilianna",
-    title: "Умеющего слушать и слышать, учитывать потребности клиента по максимуму",
-    text: "Искали няню долго и упорно, обратились в данное агентство и менеджер Светлана учла все наши пожелания и нашла прекрасную няню. Рекомендую данного специалиста, как умеющего слушать и слышать, учитывать потребности клиента по максимуму.",
-  },
-  {
-    name: "Сабина Карамирзаева",
-    title: "Профессионализм и индивидуальный подход — вот что отличает это агентство",
-    text: "Сотрудничество началось с консультации, где Ольга очень внимательно выслушала мои пожелания и предложила несколько подходящих кандидатур. В итоге мы выбрали замечательную няню. Профессионализм и индивидуальный подход — вот что отличает это агентство.",
-  },
-  {
-    name: "653487 Юн",
-    title: "Менеджер выслушала, успокоила мои страхи, уточнила все нюансы",
-    text: "Пришлось срочно найти няню малышам. Долго сомневалась, так как никогда не оставляла их даже на 1 час. Менеджер выслушала, успокоила мои страхи, уточнила все нюансы. Огромная Вам благодарность. Не часто такое встретишь.",
-  },
-  {
-    name: "Кира",
-    title: "Тщательный отбор под нашу семью",
-    text: "Общалась с Ольгой, и она была невероятно внимательной и заботливой. Она помогла мне выбрать подходящих специалистов для нашей семьи, включая няню для ребенка. Меня впечатлила большая эксклюзивная база сотрудников. Каждый кандидат прошёл тщательный отбор и имел отличные рекомендации.",
-  },
-  {
-    name: "Марон Е.",
-    title: "Подбор персонала был тщательным, предложили несколько подходящих кандидатов",
-    text: "Мы обратились в Staff Консьерж для поиска няни для нашего ребёнка и остались довольны. Подбор персонала был тщательным, и нам предложили несколько подходящих кандидатов. Няня отлично справляется с задачами.",
-  },
-  {
-    name: "Анастасия Филатова",
-    title: "Быстро нашла нянечку под наш запрос... превзошла все наши ожидания",
-    text: "Хочу поблагодарить Staff Консьерж и их сотрудницу Евгению, которая быстро нашла нянечку под наш запрос. Нянечка также превзошла все наши ожидания, ребенку очень понравилась.",
-  },
-  {
-    name: "Ольга Ф.",
-    title: "Знают подход для детей разного возраста",
-    text: "Staff Консьерж — компания, в которой можно быстро подобрать домашний персонал. Няни для ребёнка очень понимающие, знают подход для детей разного возраста. Рекомендовала друзьям, остались довольны.",
-  },
-  {
-    name: "Диана Галелюк",
-    title: "Агентство не просто подбирает сотрудников, но и активно помогает в процессе адаптации. Благодаря Staff Консьерж я нашла",
-    text: "",
-  },
-  {
-    name: "Ольга М.",
-    title: "Девочки выполнили все наши требования, няня прекрасная, нашла общий язык с ребёнком сразу, теперь мы смело можем оставить нашего малыша с надёжным человеком",
-    text: "",
-  },
-  {
-    name: "Алекс Бахарев",
-    title: "Довольно волнительно подобрать няню ребёнку, обратились сюда по совету друзей, ни разу не пожалели. Если у вас похожая ситуация, смело обращайтесь — подберут человека с опытом",
-    text: "",
-  },
-  {
-    name: "Георгий Андреев",
-    title: "Обращалась к Евгении за няней — подобрали внимательную специалистку, обучила чтению и учит письму",
-    text: "",
-  },
-];
+const reviews = [review01, review02, review03, review04, review05, review06, review07, review08, review09, review10];
 
 // ─── Кейсы выпускников (п.5 сметы): формат «до → обучение → результат» ──────
 // Заполняются реальными материалами выпускников с разрешением на публикацию.
@@ -113,34 +40,19 @@ const caseSteps: [keyof Omit<GraduateCase, "name">, string][] = [
   ["result", "Результат"],
 ];
 
-type Review = (typeof reviews)[number];
-
-const ReviewCard = ({ review, index, isInView }: { review: Review; index: number; isInView: boolean }) => (
+const ReviewCard = ({ review, index, isInView }: { review: string; index: number; isInView: boolean }) => (
   <motion.article
     initial={{ opacity: 0, y: 18 }}
     animate={isInView ? { opacity: 1, y: 0 } : {}}
     transition={{ duration: 0.45, delay: index * 0.04 }}
-    className="h-full min-h-[300px] rounded-2xl border border-white/50 bg-card/80 backdrop-blur-sm p-5 shadow-sm"
+    className="flex h-full items-center justify-center overflow-hidden rounded-2xl border border-white/50 bg-card/80 p-2 shadow-sm"
   >
-    <div className="mb-4 flex items-start justify-between gap-3">
-      <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-          <Quote size={17} />
-        </div>
-        <p className="text-sm font-semibold text-foreground">{review.name}</p>
-      </div>
-
-      <div className="flex items-center gap-0.5 text-primary">
-        {Array.from({ length: 5 }).map((_, starIndex) => (
-          <Star key={starIndex} size={12} fill="currentColor" />
-        ))}
-      </div>
-    </div>
-
-    <h3 className="mb-3 font-sans text-sm md:text-[15px] font-semibold leading-snug tracking-normal normal-case">
-      {review.title}
-    </h3>
-    {review.text && <p className="text-sm leading-relaxed text-muted-foreground">{review.text}</p>}
+    <img
+      src={review}
+      alt="Скриншот отзыва о трудоустройстве через Staff Concierge"
+      loading="lazy"
+      className="max-h-[620px] w-full rounded-xl object-contain"
+    />
   </motion.article>
 );
 
@@ -158,11 +70,9 @@ const Reviews = () => {
           className="mb-10 md:mb-12 max-w-5xl"
         >
           <p className="section-label">Отзывы</p>
-          <h2 className="heading-lg mb-4">
-            Мы знаем, кого ищут эти семьи — так как подбираем для них специалистов каждый день.
-          </h2>
+          <h2 className="heading-lg mb-4">Опыт, который подтверждают специалисты</h2>
           <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-            Отзывы семей, из чьих запросов и родилась эта программа.
+            Реальные отзывы о трудоустройстве через агентство Staff Concierge.
           </p>
         </motion.div>
 
@@ -200,7 +110,7 @@ const Reviews = () => {
           <div className="flex gap-4 md:gap-5">
             {reviews.map((review, index) => (
               <div
-                key={review.name}
+                key={review}
                 className="w-[78vw] max-w-[360px] shrink-0 snap-start sm:w-[calc((100%_-_1rem)/2)] sm:max-w-none"
               >
                 <ReviewCard review={review} index={index} isInView={isInView} />
@@ -215,7 +125,7 @@ const Reviews = () => {
         >
           <CarouselContent className="-ml-5">
             {reviews.map((review, index) => (
-              <CarouselItem key={review.name} className="basis-1/3 pl-5">
+              <CarouselItem key={review} className="basis-1/3 pl-5">
                 <ReviewCard review={review} index={index} isInView={isInView} />
               </CarouselItem>
             ))}
