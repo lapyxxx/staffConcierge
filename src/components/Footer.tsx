@@ -50,6 +50,12 @@ const Footer = () => {
               >
                 Staff Concierge
               </a>
+              <a
+                href="mailto:staffacademy@yandex.ru"
+                className="text-xs tracking-wide text-dark-foreground/65 hover:text-dark-foreground transition-colors"
+              >
+                staffacademy@yandex.ru
+              </a>
             </div>
             <p className="text-xs text-dark-foreground/65">© {currentYear} Staff Concierge Academy</p>
           </div>

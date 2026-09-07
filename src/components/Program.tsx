@@ -154,7 +154,7 @@ const Program = () => {
             <p className="section-label">Программа курса</p>
             <h2 className="heading-lg mb-6">
               <span className="inline-block -translate-y-[0.03em] align-baseline font-sans font-extrabold tracking-normal [font-variant-numeric:lining-nums]">
-                5
+                12
               </span>{" "}
               модулей для полной трансформации
             </h2>

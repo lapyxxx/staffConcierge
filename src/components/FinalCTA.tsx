@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import ctaBgVideo from "@/assets/cta-bg.mp4";
+import LazyVideo from "@/components/LazyVideo";
 import { openApplication } from "@/lib/application";
 
 const FinalCTA = () => {
@@ -13,7 +14,7 @@ const FinalCTA = () => {
   return (
     <section className="relative overflow-hidden" ref={ref}>
       <div className="absolute inset-0">
-        <video src={ctaBgVideo} autoPlay loop muted playsInline preload="metadata" className="w-full h-full object-cover" />
+        <LazyVideo src={ctaBgVideo} className="w-full h-full object-cover" aria-hidden />
         <div className="absolute inset-0 bg-dark/70" />
       </div>
 

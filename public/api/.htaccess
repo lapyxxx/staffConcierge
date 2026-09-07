@@ -1,0 +1,4 @@
+Options -Indexes
+<FilesMatch "^(lead-config\.php|lead-config\.example\.php)$">
+  Require all denied
+</FilesMatch>

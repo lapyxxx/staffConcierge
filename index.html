@@ -17,11 +17,21 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@staffconcierge" />
     <meta name="twitter:image" content="https://staff-academia.ru/og-image.png" />
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
   </head>
 
   <body>
+    <script>
+      // Применяем выбранный вариант оформления до первой отрисовки,
+      // чтобы страница не мигала базовой палитрой.
+      (function () {
+        try {
+          var t = localStorage.getItem("sca-theme");
+          if (t === "navy" || t === "bluegray") {
+            document.documentElement.setAttribute("data-theme", t);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

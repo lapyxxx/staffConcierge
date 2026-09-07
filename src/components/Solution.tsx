@@ -105,7 +105,7 @@ const Solution = () => {
           >
             <div className="grid grid-cols-2 gap-4">
               {[
-                { number: "5", label: "Модулей обучения" },
+                { number: "12", label: "Модулей обучения" },
                 { number: "50+", label: "Часов практики" },
                 { number: "3", label: "Уровня сопровождения" },
                 { number: "1", label: "Связка с действующим агентством" },

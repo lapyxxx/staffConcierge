@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import heroVideo from "@/assets/hero-video.mp4";
+import heroPoster from "@/assets/hero-poster.jpg";
 import { reachGoal } from "@/lib/analytics";
 import { openApplication } from "@/lib/application";
 
@@ -12,14 +13,15 @@ const Hero = () => {
       <div className="absolute inset-0">
         <video
           src={heroVideo}
+          poster={heroPoster}
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-dark/65" />
+        <div className="absolute inset-0 bg-black/55" />
       </div>
 
       <div className="container-wide relative pb-16 md:pb-24 pt-32">
@@ -38,10 +40,20 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="heading-display text-cream mb-8 max-w-4xl"
+          className="heading-display text-cream mb-5 max-w-4xl"
         >
-          Станьте няней, которой доверяют семьи высокого уровня
+          Няня, которую выбирают
         </motion.h1>
+
+        {/* Positioning tagline */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.18 }}
+          className="text-lg md:text-2xl text-cream/90 max-w-2xl mb-6"
+        >
+          Больше, чем обучение — новый уровень вашей профессиональной ценности.
+        </motion.p>
 
         {/* Subtitle */}
         <motion.p
@@ -50,9 +62,9 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="text-base md:text-lg text-cream/70 max-w-xl mb-6 md:mb-12"
         >
-          Практическая онлайн-программа от кадрового агентства Staff Concierge:
-          детская психология и безопасность, стандарты работы в частной семье,
-          профессиональная коммуникация, карьерная упаковка и подготовка к собеседованию.
+          Профессиональная программа для нянь и гувернанток от кадрового агентства
+          Staff Concierge: детская психология и безопасность, стандарты работы в частной
+          семье, профессиональная коммуникация, карьерная упаковка и подготовка к собеседованию.
         </motion.p>
 
         <motion.div
@@ -71,7 +83,6 @@ const Hero = () => {
             className="inline-flex items-center justify-center gap-3 px-7 py-4 border border-cream/40 text-cream font-semibold rounded-full uppercase tracking-wider text-sm text-center hover:bg-cream/10 transition-all duration-300"
           >
             <span>Смотреть программу</span>
-            <ArrowDown size={16} />
           </a>
         </motion.div>
 

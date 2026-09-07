@@ -277,14 +277,13 @@ const ApplicationForm = () => {
             <h2 className="heading-md mb-4">Спасибо! Заявка получена</h2>
             <p className="text-muted-foreground text-sm mb-2">Ваш запрос: {selectedIntent}</p>
             <p className="text-muted-foreground text-sm leading-relaxed mb-8 max-w-md mx-auto">
-              Специалист Staff Concierge Academy свяжется с вами в ближайшее рабочее время.
+              Специалист Staff Concierge Academy свяжется с вами в течение 15 минут.
               Пока вы ждёте — посмотрите программу обучения или подпишитесь на Telegram Академии.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href="#program" className="btn-cta">
                 <span>Смотреть программу</span>
-                <ArrowUpRight size={16} />
               </a>
               <a href="https://t.me/staffconcierge" target="_blank" rel="noopener noreferrer" className="btn-outline">
                 <span>Telegram Академии</span>
@@ -406,7 +405,7 @@ const ApplicationForm = () => {
                 <ArrowUpRight size={16} />
               </button>
               <p className="text-[11px] text-muted-foreground text-center">
-                Консультация не обязывает к покупке. Менеджер свяжется с вами в рабочее время.
+                Консультация не обязывает к покупке. Отвечаем в течение 15 минут.
               </p>
             </form>
           </motion.div>

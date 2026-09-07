@@ -19,16 +19,19 @@ const plans = [
   {
     key: "basic",
     name: "БАЗОВЫЙ",
-    subtitle: "Профессиональная подготовка",
     price: "49 900",
     oldPrice: "59 900",
     forWhom:
       "Для тех, кто хочет получить полноценную системную подготовку, освоить профессию и пройти обучение самостоятельно в удобном темпе.",
-    value:
+    intro:
+      "Вы получите фундаментальные знания, профессиональные стандарты и готовые инструменты, которые сможете сразу использовать в работе.",
+    featuresLabel: "В тариф входит:",
+    result: [
       "Вы получаете системную профессиональную базу, понимаете современные стандарты работы няни и готовы уверенно применять полученные знания в работе с ребёнком и семьёй.",
+    ],
     features: [
       "12 модулей профессиональной подготовки: от возрастной психологии, развития ребёнка и первой помощи до профессионального этикета, взаимодействия с семьёй и юридической защиты специалиста",
-      "Практические задания для самостоятельного закрепления",
+      "Практические задания для самостоятельного закрепления материала",
       "Портфолио из 10 готовых рабочих документов: чек-лист безопасного договора, план адаптации ребёнка, матрица стоимости услуг и другие профессиональные инструменты",
       "Тестирование после каждого модуля",
       "Итоговая аттестация",
@@ -49,15 +52,18 @@ const plans = [
   {
     key: "pro",
     name: "PRO",
-    subtitle: "Обучение с сопровождением",
     price: "79 900",
     oldPrice: "89 900",
     forWhom:
       "Для тех, кто хочет не просто пройти курс, а получить профессиональную обратную связь, увидеть свои сильные стороны и ошибки и научиться правильно применять знания в реальных рабочих ситуациях.",
-    value:
+    intro:
+      "Главное отличие от Базового тарифа — вы проходите обучение не полностью самостоятельно: ключевые задания проверяются, а по результатам вы получаете комментарии и рекомендации куратора.",
+    featuresLabel: "В тариф входит всё из Базового, а также:",
+    result: [
+      "Вы не просто получаете знания — вы понимаете, насколько правильно умеете применять их на практике.",
       "Вы проходите обучение с профессиональным взглядом со стороны, исправляете ошибки ещё в процессе курса и выходите из программы более уверенным, подготовленным и конкурентоспособным специалистом.",
+    ],
     features: [
-      "Все из тарифа БАЗОВЫЙ",
       "Проверка ключевых практических заданий",
       "Письменная обратная связь от куратора",
       "Рекомендации по исправлению ошибок и усилению профессиональных навыков",
@@ -81,15 +87,18 @@ const plans = [
   {
     key: "vip",
     name: "VIP",
-    subtitle: "Персональная подготовка и карьерное позиционирование",
     price: "149 000",
     oldPrice: "159 000",
     forWhom:
       "Для тех, кто хочет получить максимум от программы: индивидуальную работу с экспертами, сильную профессиональную упаковку и подготовку к выходу на более высокий ценовой уровень.",
-    value:
+    intro:
+      "VIP — это уже не только обучение профессии. Это персональная работа над тем, как вы выглядите на рынке, как презентуете себя работодателю и почему семья должна выбрать именно вас.",
+    featuresLabel: "В тариф входит всё из PRO, а также:",
+    result: [
+      "Вы заканчиваете программу не только с новыми знаниями и профессиональными навыками.",
       "Вы получаете индивидуально проработанный профессиональный образ, сильную самопрезентацию и понимание собственной ценности как специалиста — чтобы увереннее проходить собеседования, претендовать на более серьёзные вакансии и повышать стоимость своих услуг.",
+    ],
     features: [
-      "Все из тарифа PRO",
       "Индивидуальная консультация с HR-специалистом / рекрутером",
       "Персональная подготовка к собеседованию: разбор сильных сторон, ошибок и стратегии общения с потенциальным работодателем",
       "Индивидуальная консультация с имидж-консультантом или стилистом",
@@ -192,11 +201,8 @@ const Pricing = () => {
               }`}>
                 {plan.name}
               </h3>
-              <p className={`text-xs mb-6 ${plan.highlighted ? "text-dark-foreground/65" : "text-muted-foreground"}`}>
-                {plan.subtitle}
-              </p>
 
-              <div className="mb-6">
+              <div className="mt-5 mb-6">
                 <span className={`text-4xl font-extrabold tracking-tight ${
                   plan.highlighted ? "text-dark-foreground" : "text-foreground"
                 }`}>
@@ -210,17 +216,15 @@ const Pricing = () => {
 
               <div className={`space-y-3 mb-7 pb-6 border-b ${plan.highlighted ? "border-white/15" : "border-border"}`}>
                 <p className={`text-sm leading-relaxed ${plan.highlighted ? "text-dark-foreground/80" : "text-muted-foreground"}`}>
-                  <span className={plan.highlighted ? "text-dark-foreground font-semibold" : "text-foreground font-semibold"}>Для кого: </span>
                   {plan.forWhom}
                 </p>
                 <p className={`text-sm leading-relaxed ${plan.highlighted ? "text-dark-foreground/80" : "text-muted-foreground"}`}>
-                  <span className={plan.highlighted ? "text-dark-foreground font-semibold" : "text-foreground font-semibold"}>Результат: </span>
-                  {plan.value}
+                  {plan.intro}
                 </p>
               </div>
 
               <p className={`mb-3 text-xs font-semibold uppercase tracking-[0.15em] ${plan.highlighted ? "text-dark-foreground" : "text-foreground"}`}>
-                В тариф входит
+                {plan.featuresLabel}
               </p>
               <ul className="space-y-3 mb-8 flex-1">
                 {plan.features.map((feature) => (
@@ -238,6 +242,22 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
+
+              <div className={`mb-7 pt-5 border-t ${plan.highlighted ? "border-white/15" : "border-border"}`}>
+                <p className={`mb-3 text-xs font-semibold uppercase tracking-[0.15em] ${plan.highlighted ? "text-dark-foreground" : "text-foreground"}`}>
+                  Результат
+                </p>
+                <div className="space-y-2">
+                  {plan.result.map((paragraph) => (
+                    <p
+                      key={paragraph}
+                      className={`text-sm leading-relaxed ${plan.highlighted ? "text-dark-foreground/80" : "text-muted-foreground"}`}
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
 
               {termLabels.some(([field]) => plan.terms[field]) && (
                 <div className={`space-y-2.5 mb-7 pt-5 border-t ${plan.highlighted ? "border-white/15" : "border-border"}`}>

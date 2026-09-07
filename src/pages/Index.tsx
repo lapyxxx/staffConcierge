@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Problems from "@/components/Problems";
@@ -16,38 +15,16 @@ import FinalCTA from "@/components/FinalCTA";
 import ApplicationForm from "@/components/ApplicationForm";
 import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
-import Loader from "@/components/Loader";
 import FloatingActions from "@/components/FloatingActions";
 import CookieNotice from "@/components/CookieNotice";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 import Analytics from "@/components/Analytics";
 import Seo from "@/components/Seo";
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const finishLoading = () => {
-      // Небольшая задержка, чтобы лоудер не моргал
-      setTimeout(() => setIsLoading(false), 400);
-    };
-
-    if (document.readyState === "complete") {
-      finishLoading();
-      return;
-    }
-
-    window.addEventListener("load", finishLoading);
-    return () => window.removeEventListener("load", finishLoading);
-  }, []);
-
-  useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }, [isLoading]);
-
+  // Экран загрузки не используется: страница отдаётся уже отрендеренной
+  // (пререндер), поэтому контент и постер первого экрана видны сразу.
+  // Лоудер только перекрывал готовую страницу и мешал старту видео.
   return (
     <div className="min-h-screen bg-background">
       <Seo
@@ -55,7 +32,6 @@ const Index = () => {
         description="Практическая онлайн-программа от кадрового агентства Staff Concierge: детская психология и безопасность, стандарты работы в частной семье, карьерная упаковка и подготовка к собеседованию."
         path="/"
       />
-      {isLoading && <Loader />}
       <Analytics />
       <Header />
       <main>
@@ -77,6 +53,7 @@ const Index = () => {
       </main>
       <Footer />
       <FloatingActions />
+      <ThemeSwitcher />
       <CookieNotice />
     </div>
   );

@@ -7,18 +7,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import review01 from "@/assets/reviews/review-01.jpg";
-import review02 from "@/assets/reviews/review-02.jpg";
-import review03 from "@/assets/reviews/review-03.jpg";
-import review04 from "@/assets/reviews/review-04.jpg";
-import review05 from "@/assets/reviews/review-05.jpg";
-import review06 from "@/assets/reviews/review-06.jpg";
-import review07 from "@/assets/reviews/review-07.jpg";
-import review08 from "@/assets/reviews/review-08.jpg";
-import review09 from "@/assets/reviews/review-09.jpg";
-import review10 from "@/assets/reviews/review-10.jpg";
-
-const reviews = [review01, review02, review03, review04, review05, review06, review07, review08, review09, review10];
+// Автоподхват всех скриншотов отзывов из папки: сколько файлов лежит —
+// столько и показывается. Чтобы добавить отзыв, просто положите картинку
+// в src/assets/reviews/ (нумерация задаёт порядок).
+const reviewModules = import.meta.glob("../assets/reviews/*.{jpg,jpeg,png}", {
+  eager: true,
+  import: "default",
+});
+const reviews = Object.keys(reviewModules)
+  .sort()
+  .map((key) => reviewModules[key] as string);
 
 // ─── Кейсы выпускников (п.5 сметы): формат «до → обучение → результат» ──────
 // Заполняются реальными материалами выпускников с разрешением на публикацию.

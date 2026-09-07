@@ -109,7 +109,7 @@ const Problems = () => {
               poster={promoPoster}
               controls={isPromoStarted}
               playsInline
-              preload="metadata"
+              preload="none"
               className="w-full h-full object-cover"
             />
             {!isPromoStarted && (

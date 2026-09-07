@@ -15,5 +15,14 @@ export const openApplication = (intent: string = "consultation", goal?: string) 
   url.searchParams.set("intent", intent);
   window.history.pushState({}, "", url);
   window.dispatchEvent(new CustomEvent("application-intent-change"));
-  document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth" });
+
+  // Скроллим к форме с учётом высоты липкой шапки, чтобы заголовок формы
+  // не оказывался под ней и переход попадал точно на блок заявки.
+  const el = document.getElementById("application-form");
+  if (el) {
+    const header = document.querySelector("header");
+    const offset = (header instanceof HTMLElement ? header.offsetHeight : 0) + 16;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
+  }
 };

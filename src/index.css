@@ -64,6 +64,108 @@
     --shadow-xl: 0 20px 60px hsl(211 30% 16% / 0.09);
   }
 
+  /* ─────────────────────────────────────────────────────────────────────
+     Вариант «NAVY IVORY» — фирменный брендбук академии.
+     Глубокий сине-серый #3F5163 + #5A6878, светлый фон ivory #F5F3EE,
+     холодный светлый #E6E9EC и тёплый бежевый акцент #C9C1B6.
+     Светлый текст на тёмном — мягкий ivory, а не чисто белый.
+     ───────────────────────────────────────────────────────────────────── */
+  [data-theme="navy"] {
+    --background: 43 26% 95%;
+    --foreground: 211 25% 21%;
+
+    --card: 42 30% 97%;
+    --card-foreground: 211 25% 21%;
+
+    --popover: 42 33% 98%;
+    --popover-foreground: 211 25% 21%;
+
+    --primary: 210 22% 32%;
+    --primary-foreground: 43 26% 95%;
+
+    --secondary: 210 14% 91%;
+    --secondary-foreground: 211 25% 21%;
+
+    --muted: 210 14% 91%;
+    --muted-foreground: 212 14% 41%;
+
+    --accent: 35 15% 75%;
+    --accent-foreground: 211 25% 21%;
+
+    --dark: 211 26% 20%;
+    --dark-foreground: 43 26% 95%;
+
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 43 26% 95%;
+
+    --border: 210 14% 87%;
+    --input: 210 14% 87%;
+    --ring: 210 22% 32%;
+
+    --olive: 210 22% 32%;
+    --olive-light: 210 14% 91%;
+    --olive-dark: 211 26% 24%;
+    --cream: 43 26% 95%;
+    --cream-dark: 40 20% 90%;
+    --charcoal: 211 26% 20%;
+
+    --shadow-sm: 0 1px 4px hsl(211 26% 20% / 0.04);
+    --shadow-md: 0 4px 20px hsl(211 26% 20% / 0.05);
+    --shadow-lg: 0 12px 40px hsl(211 26% 20% / 0.07);
+    --shadow-xl: 0 20px 60px hsl(211 26% 20% / 0.09);
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     Вариант «BLUE GRAY» — присланная палитра #8698AA / #64798C / #485A6E.
+     Прохладный светлый фон, средний сине-серый в акцентах и кнопках.
+     ───────────────────────────────────────────────────────────────────── */
+  [data-theme="bluegray"] {
+    --background: 210 26% 97%;
+    --foreground: 212 24% 22%;
+
+    --card: 210 33% 99%;
+    --card-foreground: 212 24% 22%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 212 24% 22%;
+
+    /* Кнопки — более глубокий #485A6E: он даёт достаточный контраст со
+       светлым текстом. #64798C и #8698AA работают как акценты. */
+    --primary: 212 21% 36%;
+    --primary-foreground: 210 30% 98%;
+
+    --secondary: 210 22% 92%;
+    --secondary-foreground: 212 24% 22%;
+
+    --muted: 210 20% 91%;
+    --muted-foreground: 212 13% 44%;
+
+    --accent: 210 17% 60%;
+    --accent-foreground: 212 24% 20%;
+
+    --dark: 212 21% 28%;
+    --dark-foreground: 210 26% 97%;
+
+    --destructive: 0 68% 47%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 18% 88%;
+    --input: 210 18% 88%;
+    --ring: 212 21% 36%;
+
+    --olive: 209 17% 47%;
+    --olive-light: 210 20% 91%;
+    --olive-dark: 212 21% 33%;
+    --cream: 210 26% 97%;
+    --cream-dark: 210 22% 92%;
+    --charcoal: 212 21% 28%;
+
+    --shadow-sm: 0 1px 4px hsl(212 21% 28% / 0.05);
+    --shadow-md: 0 4px 20px hsl(212 21% 28% / 0.06);
+    --shadow-lg: 0 12px 40px hsl(212 21% 28% / 0.08);
+    --shadow-xl: 0 20px 60px hsl(212 21% 28% / 0.10);
+  }
+
   .dark {
     --background: 211 32% 9%;
     --foreground: 210 24% 96%;

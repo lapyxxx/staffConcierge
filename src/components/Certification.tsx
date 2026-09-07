@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { FileCheck, Shield, Award } from "lucide-react";
 import diplomVideo from "@/assets/diplom.mp4";
+import LazyVideo from "@/components/LazyVideo";
 
 const Certification = () => {
   const ref = useRef(null);
@@ -17,15 +18,7 @@ const Certification = () => {
             transition={{ duration: 0.7 }}
           >
             <div className="rounded-2xl overflow-hidden">
-              <video
-                src={diplomVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                className="w-full h-auto object-cover"
-              />
+              <LazyVideo src={diplomVideo} className="w-full h-auto object-cover" />
             </div>
           </motion.div>
 

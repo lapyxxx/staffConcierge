@@ -74,8 +74,8 @@ const PersonalData = () => {
               <h2 className="heading-md mb-4">6. Контактная информация</h2>
               <p className="text-muted-foreground leading-relaxed">
                 По вопросам обработки персональных данных обращайтесь: 
-                <a href="mailto:info@staffconcierge.ru" className="text-primary hover:underline ml-1">
-                  info@staffconcierge.ru
+                <a href="mailto:staffacademy@yandex.ru" className="text-primary hover:underline ml-1">
+                  staffacademy@yandex.ru
                 </a>
               </p>
             </section>
