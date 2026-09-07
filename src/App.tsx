@@ -11,6 +11,8 @@ import TermsOfService from "./pages/TermsOfService";
 import PersonalData from "./pages/PersonalData";
 import VipFamilyArticle from "./pages/VipFamilyArticle";
 import GovernessSalaryArticle from "./pages/GovernessSalaryArticle";
+import Sveden from "./pages/Sveden";
+import SvedenEducation from "./pages/SvedenEducation";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/personal-data" element={<PersonalData />} />
           <Route path="/articles/vip-family" element={<VipFamilyArticle />} />
           <Route path="/articles/governess-salary" element={<GovernessSalaryArticle />} />
+          <Route path="/sveden" element={<Sveden />} />
+          <Route path="/sveden/education" element={<SvedenEducation />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

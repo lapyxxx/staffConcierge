@@ -10,7 +10,7 @@ const TermsOfService = () => {
         description="Условия использования сайта и образовательных материалов Staff Concierge Academy."
         path="/terms"
       />
-      <Header />
+      <Header solid />
       <main className="section-padding">
         <div className="container-wide max-w-4xl">
           <h1 className="heading-xl mb-8">Пользовательское соглашение</h1>
@@ -20,7 +20,8 @@ const TermsOfService = () => {
               <h2 className="heading-md mb-4">1. Общие положения</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Настоящее Пользовательское соглашение (далее — «Соглашение») регулирует отношения между 
-                ООО «Стафф Консьерж» (далее — «Администрация») и пользователем сайта Staff Concierge Academy 
+                ИП Высокий Сергей Евгеньевич (ИНН 771003636304, ОГРНИП 319774600128719)
+                (далее — «Администрация») и пользователем сайта Staff Concierge Academy
                 (далее — «Пользователь»).
               </p>
             </section>
@@ -73,7 +74,7 @@ const TermsOfService = () => {
 
             <section>
               <p className="text-sm text-muted-foreground mt-8">
-                Дата последнего обновления: 15 июля 2026 года
+                Дата последнего обновления: 7 сентября 2026 года
               </p>
             </section>
           </div>

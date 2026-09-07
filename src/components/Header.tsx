@@ -5,10 +5,21 @@ import logoWhite from "@/assets/logo-white.png";
 import logoBlack from "@/assets/logo-black.png";
 import { openApplication } from "@/lib/application";
 
-const Header = () => {
+type HeaderProps = {
+  /** Сплошная светлая шапка для второстепенных страниц: не накладывается на контент,
+   *  тёмный логотип и тёмные пункты меню независимо от прокрутки. */
+  solid?: boolean;
+};
+
+const Header = ({ solid = false }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showCookieDot, setShowCookieDot] = useState(false);
+
+  // На второстепенных страницах якоря секций живут на главной.
+  const linkPrefix = solid ? "/" : "";
+  // Тёмное оформление шапки (лого/текст/кнопка меню).
+  const dark = solid || isScrolled || isMenuOpen;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -30,7 +41,6 @@ const Header = () => {
     { label: "О КУРСЕ", href: "#about" },
     { label: "ПРОГРАММА", href: "#program" },
     { label: "ЭКСПЕРТЫ", href: "#teachers" },
-    { label: "ОТЗЫВЫ", href: "#reviews" },
     { label: "ТАРИФЫ", href: "#pricing" },
     { label: "FAQ", href: "#faq" },
   ];
@@ -45,15 +55,21 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isMenuOpen ? "bg-background" : isScrolled ? "bg-background/95 backdrop-blur-md" : "bg-transparent"
+      className={`${solid ? "sticky" : "fixed"} top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        solid
+          ? "bg-background border-b border-border"
+          : isMenuOpen
+            ? "bg-background"
+            : isScrolled
+              ? "bg-background/95 backdrop-blur-md"
+              : "bg-transparent"
       }`}
     >
       <div className="container-wide">
         <div className="flex items-center justify-between h-20 md:h-24">
-          <a href="#" className="flex items-center">
+          <a href={solid ? "/" : "#"} className="flex items-center">
             <img
-              src={isScrolled || isMenuOpen ? logoBlack : logoWhite}
+              src={dark ? logoBlack : logoWhite}
               alt="SK Academia"
               className="h-10 md:h-14 lg:h-16 w-auto object-contain"
             />
@@ -63,10 +79,10 @@ const Header = () => {
             {navItems.map(item => (
               <a
                 key={item.href}
-                href={item.href}
+                href={`${linkPrefix}${item.href}`}
                 onClick={closeMenu}
                 className={`text-xs font-semibold tracking-[0.15em] transition-colors ${
-                  isScrolled || isMenuOpen
+                  dark
                     ? "text-muted-foreground hover:text-foreground"
                     : "text-cream/80 hover:text-cream"
                 }`}
@@ -107,7 +123,7 @@ const Header = () => {
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`lg:hidden p-2 ${isScrolled || isMenuOpen ? "text-foreground" : "text-cream"}`}
+            className={`lg:hidden p-2 ${dark ? "text-foreground" : "text-cream"}`}
             aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={isMenuOpen}
           >
@@ -129,7 +145,7 @@ const Header = () => {
                 {navItems.map((item, index) => (
                   <motion.a
                     key={item.href}
-                    href={item.href}
+                    href={`${linkPrefix}${item.href}`}
                     onClick={() => setIsMenuOpen(false)}
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}

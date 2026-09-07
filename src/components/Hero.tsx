@@ -52,7 +52,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.18 }}
           className="text-lg md:text-2xl text-cream/90 max-w-2xl mb-6"
         >
-          Больше, чем обучение — новый уровень вашей профессиональной ценности.
+          Больше, чем обучение.
         </motion.p>
 
         {/* Subtitle */}
@@ -62,8 +62,8 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="text-base md:text-lg text-cream/70 max-w-xl mb-6 md:mb-12"
         >
-          Профессиональная программа для нянь и гувернанток от кадрового агентства
-          Staff Concierge: детская психология и безопасность, стандарты работы в частной
+          Дополнительная общеразвивающая программа для нянь и гувернанток:
+          детская психология и безопасность, стандарты работы в частной
           семье, профессиональная коммуникация, карьерная упаковка и подготовка к собеседованию.
         </motion.p>
 
@@ -84,16 +84,6 @@ const Hero = () => {
           >
             <span>Смотреть программу</span>
           </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.42 }}
-          className="mt-6 md:mt-8 max-w-2xl border-l border-primary pl-5 text-sm md:text-base text-cream/80 leading-relaxed"
-        >
-          Лучшие выпускники после успешного завершения программы и соответствия
-          стандартам могут получить приоритетное рассмотрение в агентстве.
         </motion.div>
       </div>
     </section>

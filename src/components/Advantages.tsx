@@ -49,11 +49,7 @@ const Advantages = () => {
           className="flex flex-col items-start text-left gap-3 mb-12"
         >
           <p className="section-label">Преимущества программы</p>
-          <h2 className="heading-lg">Почему няни выбирают Staff Concierge Academy</h2>
-          <p className="text-muted-foreground max-w-2xl text-sm md:text-base">
-            Мы собрали ключевые элементы, которые важны профессиональным няням: от качества контента до реальных карьерных
-            возможностей.
-          </p>
+          <h2 className="heading-lg">Почему выбирают программу</h2>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">

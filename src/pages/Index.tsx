@@ -8,12 +8,10 @@ import Teachers from "@/components/Teachers";
 import TrustEvidence from "@/components/TrustEvidence";
 import Advantages from "@/components/Advantages";
 import Certification from "@/components/Certification";
-import ExamEmployment from "@/components/ExamEmployment";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import ApplicationForm from "@/components/ApplicationForm";
-import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
 import CookieNotice from "@/components/CookieNotice";
@@ -29,7 +27,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Seo
         title="Staff Concierge Academy — обучение нянь и гувернанток для семей высокого уровня"
-        description="Практическая онлайн-программа от кадрового агентства Staff Concierge: детская психология и безопасность, стандарты работы в частной семье, карьерная упаковка и подготовка к собеседованию."
+        description="Дополнительная общеразвивающая программа для нянь и гувернанток: детская психология и безопасность, стандарты работы в частной семье, профессиональная коммуникация, карьерная упаковка и подготовка к собеседованию."
         path="/"
       />
       <Analytics />
@@ -44,8 +42,6 @@ const Index = () => {
         <Advantages />
         <TrustEvidence />
         <Certification />
-        <ExamEmployment />
-        <Reviews />
         <Pricing />
         <FAQ />
         <FinalCTA />

@@ -22,6 +22,8 @@ const routes = [
   "/personal-data",
   "/articles/vip-family",
   "/articles/governess-salary",
+  "/sveden",
+  "/sveden/education",
   "/",
 ];
 

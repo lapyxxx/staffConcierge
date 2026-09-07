@@ -9,8 +9,8 @@ const GovernessSalaryArticle = () => (
       description="От чего зависит доход гувернантки в премиальном сегменте и как карьерная подготовка помогает обсуждать условия."
       path="/articles/governess-salary"
     />
-    <Header />
-    <main className="container-wide pt-32 md:pt-40 pb-20 max-w-4xl">
+    <Header solid />
+    <main className="container-wide pt-10 md:pt-14 pb-20 max-w-4xl">
       <p className="section-label">Материалы</p>
       <h1 className="heading-lg mb-8">Сколько зарабатывает гувернантка в премиальном сегменте</h1>
       <div className="space-y-6 text-muted-foreground leading-relaxed">

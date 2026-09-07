@@ -24,4 +24,12 @@
     <loc>https://staff-academia.ru/articles/governess-salary</loc>
     <priority>0.4</priority>
   </url>
+  <url>
+    <loc>https://staff-academia.ru/sveden</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://staff-academia.ru/sveden/education</loc>
+    <priority>0.5</priority>
+  </url>
 </urlset>

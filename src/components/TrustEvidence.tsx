@@ -26,10 +26,7 @@ const evidence = [
 
 // Подтверждённые цифры/факты об опыте агентства.
 // Пример: { value: "8 лет", label: "агентство подбирает домашний персонал" }
-const agencyStats: { value: string; label: string }[] = [
-  { value: "6 лет", label: "агентство Staff Concierge подбирает домашний персонал" },
-  { value: "1000+", label: "специалистов трудоустроено в семьи" },
-];
+const agencyStats: { value: string; label: string }[] = [];
 
 // Фрагмент урока: видео/скрин/описание. Заполнить href и текст — появится карточка.
 // Пример: { title: "Фрагмент урока", description: "…", href: "https://…" }

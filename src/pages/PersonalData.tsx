@@ -10,7 +10,7 @@ const PersonalData = () => {
         description="Политика обработки персональных данных в соответствии с ФЗ-152 на сайте Staff Concierge Academy."
         path="/personal-data"
       />
-      <Header />
+      <Header solid />
       <main className="section-padding">
         <div className="container-wide max-w-4xl">
           <h1 className="heading-xl mb-8">Политика обработки персональных данных</h1>
@@ -20,7 +20,8 @@ const PersonalData = () => {
               <h2 className="heading-md mb-4">1. Основные понятия</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Настоящая Политика разработана в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ 
-                «О персональных данных» и определяет порядок обработки персональных данных в ООО «Стафф Консьерж».
+                «О персональных данных» и определяет порядок обработки персональных данных
+                ИП Высокий Сергей Евгеньевич (ИНН 771003636304, ОГРНИП 319774600128719).
               </p>
             </section>
 
@@ -82,7 +83,7 @@ const PersonalData = () => {
 
             <section>
               <p className="text-sm text-muted-foreground mt-8">
-                Дата последнего обновления: 15 июля 2026 года
+                Дата последнего обновления: 7 сентября 2026 года
               </p>
             </section>
           </div>
