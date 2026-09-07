@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
         description="Порядок обработки и защиты персональных данных пользователей сайта Staff Concierge Academy."
         path="/privacy"
       />
-      <Header />
+      <Header solid />
       <main className="section-padding">
         <div className="container-wide max-w-4xl">
           <h1 className="heading-xl mb-8">Политика конфиденциальности</h1>
@@ -20,7 +20,8 @@ const PrivacyPolicy = () => {
               <h2 className="heading-md mb-4">1. Общие положения</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных 
-                пользователей сайта Staff Concierge Academy (далее — «Сайт»), принадлежащего ООО «Стафф Консьерж» 
+                пользователей сайта Staff Concierge Academy (далее — «Сайт»), принадлежащего
+                ИП Высокий Сергей Евгеньевич (ИНН 771003636304, ОГРНИП 319774600128719)
                 (далее — «Оператор»).
               </p>
             </section>
@@ -66,7 +67,7 @@ const PrivacyPolicy = () => {
 
             <section>
               <p className="text-sm text-muted-foreground mt-8">
-                Дата последнего обновления: 15 июля 2026 года
+                Дата последнего обновления: 7 сентября 2026 года
               </p>
             </section>
           </div>

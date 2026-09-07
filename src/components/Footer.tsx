@@ -2,7 +2,7 @@ import logo from "@/assets/logo-white.png";
 
 // TODO(контент): заполнить утверждёнными данными. Пустые значения не отображаются.
 const offerHref = ""; // ссылка на оферту (например "/offer" или PDF)
-const legalRequisites = ""; // реквизиты: ИП/ООО, ИНН, ОГРН и т.п.
+const legalRequisites = "ИП Высокий Сергей Евгеньевич · ИНН 771003636304 · ОГРНИП 319774600128719";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,7 +14,7 @@ const Footer = () => {
           <div>
             <img src={logo} alt="SK Academia" className="h-12 md:h-16 w-auto object-contain mb-3" />
             <p className="text-xs text-dark-foreground/65">
-              Профессиональное образование<br />для специалистов премиум-сегмента
+              Образование<br />для специалистов премиум-сегмента
             </p>
           </div>
 
@@ -71,6 +71,9 @@ const Footer = () => {
             </a>
             <a href="/personal-data" className="text-xs text-dark-foreground/65 hover:text-dark-foreground transition-colors">
               Политика обработки персональных данных
+            </a>
+            <a href="/sveden" className="text-xs text-dark-foreground/65 hover:text-dark-foreground transition-colors">
+              Сведения об образовательной организации
             </a>
             {offerHref && (
               <a href={offerHref} className="text-xs text-dark-foreground/65 hover:text-dark-foreground transition-colors">

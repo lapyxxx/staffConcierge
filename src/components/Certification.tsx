@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FileCheck, Shield, Award } from "lucide-react";
+import { FileCheck, Shield } from "lucide-react";
 import diplomVideo from "@/assets/diplom.mp4";
 import LazyVideo from "@/components/LazyVideo";
 
@@ -27,18 +27,21 @@ const Certification = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <p className="section-label">Сертификация</p>
-            <h2 className="heading-lg mb-6">Документ, подтверждающий профессионализм</h2>
-            <p className="text-lead mb-10">
-              По итогам обучения вы получаете сертификат установленного образца.
-              Информация о лицензировании предоставляется по запросу.
+            <p className="section-label">Документ по итогам обучения</p>
+            <h2 className="heading-lg mb-6">Сертификат</h2>
+            <p className="text-lead mb-4">
+              По итогам успешного прохождения программы вы получите сертификат,
+              подтверждающий обучение.
+            </p>
+            <p className="text-sm text-muted-foreground mb-10">
+              Лицензия на осуществление образовательной деятельности находится
+              в процессе оформления.
             </p>
 
             <div className="space-y-5">
               {[
-                { icon: FileCheck, text: "Сертификат установленного образца" },
-                { icon: Shield, text: "Информация о лицензировании предоставляется по запросу" },
-                { icon: Award, text: "Признание в профессиональном сообществе" },
+                { icon: FileCheck, text: "Сертификат по итогам программы" },
+                { icon: Shield, text: "Подтверждение прохождения программы" },
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">

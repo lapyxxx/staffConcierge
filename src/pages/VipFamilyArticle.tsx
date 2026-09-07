@@ -9,8 +9,8 @@ const VipFamilyArticle = () => (
       description="Что важно для работы в VIP-семье: безопасность, этика, границы, коммуникация и подготовка к собеседованию."
       path="/articles/vip-family"
     />
-    <Header />
-    <main className="container-wide pt-32 md:pt-40 pb-20 max-w-4xl">
+    <Header solid />
+    <main className="container-wide pt-10 md:pt-14 pb-20 max-w-4xl">
       <p className="section-label">Материалы</p>
       <h1 className="heading-lg mb-8">Как попасть работать в VIP-семью</h1>
       <div className="space-y-6 text-muted-foreground leading-relaxed">
